@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pafel Solutions HVAC Services — Custom design, VRF installation, refrigerant piping, maintenance SLAs and advanced diagnostics in Abuja, Nigeria.">
+<title>Services — Pafel Solutions Nig. Ltd</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* PAGE HERO */
+.page-hero { background: var(--navy); padding: 9rem 0 4rem; position: relative; overflow: hidden; }
+.page-hero::after { content:''; position:absolute; inset:0; background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=70') center/cover no-repeat; opacity:0.08; z-index:0; }
+.page-hero .container { position:relative; z-index:1; }
+.page-hero h1 { color:white; margin-bottom:0.75rem; }
+.page-hero p { color:rgba(255,255,255,0.6); max-width:560px; font-size:1.05rem; }
+.breadcrumb { display:flex; gap:0.5rem; align-items:center; margin-bottom:1.5rem; }
+.breadcrumb a { color:rgba(255,255,255,0.45); font-size:0.8rem; text-decoration:none; font-family:var(--font-heading); }
+.breadcrumb a:hover { color:var(--sky-light); }
+.breadcrumb span { color:rgba(255,255,255,0.25); font-size:0.8rem; }
+
+/* SERVICE NAV */
+.svc-nav { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:70px; z-index:50; }
+.svc-nav-inner { display:flex; overflow-x:auto; gap:0; scrollbar-width:none; }
+.svc-nav-inner::-webkit-scrollbar { display:none; }
+.svc-nav a { display:flex; align-items:center; gap:0.5rem; padding:1rem 1.5rem; font-family:var(--font-heading); font-size:0.82rem; font-weight:600; color:var(--steel); text-decoration:none; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.2s; }
+.svc-nav a i { font-size:0.85rem; }
+.svc-nav a:hover, .svc-nav a.active { color:var(--sky); border-bottom-color:var(--sky); }
+
+/* SERVICE SECTION */
+.svc-section { padding:6rem 0; border-bottom:1px solid var(--border); }
+.svc-section:nth-child(even) { background:var(--bg2); }
+.svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.svc-grid.reverse { direction:rtl; }
+.svc-grid.reverse > * { direction:ltr; }
+.svc-img { border-radius:var(--radius-lg); overflow:hidden; position:relative; }
+.svc-img img { width:100%; height:420px; object-fit:cover; display:block; }
+.svc-img-badge { position:absolute; bottom:1.25rem; left:1.25rem; background:var(--navy); color:white; border-radius:var(--radius); padding:0.6rem 1rem; font-family:var(--font-heading); font-size:0.8rem; font-weight:600; }
+.svc-img-badge i { color:var(--sky-light); margin-right:0.4rem; }
+.svc-text .eyebrow { margin-bottom:0.75rem; }
+.svc-text h2 { margin-bottom:1rem; }
+.svc-text .lead { font-size:1rem; color:var(--steel); margin-bottom:1.75rem; line-height:1.75; }
+
+/* WORKFLOW */
+.workflow { margin:2rem 0; display:flex; flex-direction:column; gap:1.25rem; }
+.wf-step { display:flex; gap:1.25rem; align-items:flex-start; }
+.wf-num { width:36px; height:36px; background:var(--sky); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:0.8rem; font-weight:700; flex-shrink:0; margin-top:2px; }
+.wf-content h5 { font-size:0.9rem; color:var(--navy); margin-bottom:0.25rem; }
+.wf-content p { font-size:0.85rem; color:var(--steel); line-height:1.6; }
+
+/* SPECS */
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.75rem 0; }
+.spec-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.1rem 1.25rem; }
+.spec-card .spec-label { font-size:0.72rem; font-family:var(--font-heading); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-muted); margin-bottom:0.3rem; }
+.spec-card .spec-val { font-size:0.9rem; font-weight:600; color:var(--navy); font-family:var(--font-heading); }
+
+/* SLA MATRIX */
+.sla-table { width:100%; border-collapse:collapse; margin-top:2rem; font-size:0.85rem; }
+.sla-table th { background:var(--navy); color:white; font-family:var(--font-heading); font-size:0.78rem; font-weight:600; padding:0.85rem 1rem; text-align:left; }
+.sla-table th:first-child { border-radius:var(--radius) 0 0 0; }
+.sla-table th:last-child { border-radius:0 var(--radius) 0 0; }
+.sla-table th.featured { background:var(--sky); }
+.sla-table td { padding:0.75rem 1rem; border-bottom:1px solid var(--border); color:var(--steel); }
+.sla-table tr:nth-child(even) td { background:var(--bg2); }
+.sla-table td.featured { background:rgba(3,105,161,0.06); color:var(--navy); font-weight:500; }
+.sla-check { color:var(--sky); }
+.sla-na { color:var(--fg-muted); }
+
+/* FEATURE LIST */
+.feature-list { list-style:none; display:flex; flex-direction:column; gap:0.75rem; margin:1.5rem 0; }
+.feature-list li { display:flex; gap:0.75rem; align-items:flex-start; font-size:0.9rem; color:var(--steel); }
+.feature-list li i { color:var(--sky); margin-top:2px; flex-shrink:0; }
+
+@media (max-width:900px) { .svc-grid { grid-template-columns:1fr; gap:2.5rem; } .svc-grid.reverse { direction:ltr; } .spec-grid { grid-template-columns:1fr; } .svc-img img { height:280px; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+      <div class="nav-logo-text">Pafel Solutions<span>Nig. Ltd</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="has-dropdown"><a href="services.html" class="active">Services <i class="fa-solid fa-chevron-down" style="font-size:0.65rem; margin-left:2px;"></i></a>
+        <div class="dropdown">
+          <a href="#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design & Engineering</a>
+          <a href="#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & Industrial AC Installation</a>
+          <a href="#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Conduit Piping</a>
+          <a href="#maintenance"><i class="fa-solid fa-calendar-check"></i> Preventative Maintenance & SLAs</a>
+          <a href="#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Advanced Diagnostics</a>
+        </div>
+      </li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="procurement.html">Procurement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+234" class="nav-phone"><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</a>
+      <a href="contact.html" class="btn btn-primary nav-cta">Request Consultation</a>
+      <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+  <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+  <div class="mobile-menu-label">Services</div>
+  <a href="#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design</a>
+  <a href="#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & AC Installation</a>
+  <a href="#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Piping</a>
+  <a href="#maintenance"><i class="fa-solid fa-calendar-check"></i> Maintenance & SLAs</a>
+  <a href="#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnostics</a>
+  <a href="projects.html"><i class="fa-solid fa-folder-open"></i> Projects</a>
+  <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+  <div style="padding-top:1.5rem;"><a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;">Request a Consultation</a></div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>/</span><a href="#">Services</a>
+    </div>
+    <div class="eyebrow" style="color:var(--sky-light);">Our service offering</div>
+    <h1>Engineering solutions built for Nigeria's climate</h1>
+    <p>Five specialised HVAC disciplines — from preliminary design to long-term facility management — delivered by certified engineers in Abuja.</p>
+  </div>
+</div>
+
+<!-- SERVICE NAV -->
+<div class="svc-nav">
+  <div class="svc-nav-inner container">
+    <a href="#hvac-design"><i class="fa-solid fa-drafting-compass"></i> HVAC Design</a>
+    <a href="#installation"><i class="fa-solid fa-screwdriver-wrench"></i> Installation</a>
+    <a href="#piping"><i class="fa-solid fa-pipe-section"></i> Conduit Piping</a>
+    <a href="#maintenance"><i class="fa-solid fa-calendar-check"></i> Maintenance & SLAs</a>
+    <a href="#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnostics</a>
+  </div>
+</div>
+
+<!-- 1. HVAC DESIGN -->
+<section class="svc-section" id="hvac-design">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-img reveal-left">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="HVAC engineering blueprints and design drawings" loading="lazy">
+        <div class="svc-img-badge"><i class="fa-solid fa-drafting-compass"></i> Thermal load analysis</div>
+      </div>
+      <div class="svc-text reveal-right">
+        <div class="eyebrow">Service 01</div>
+        <h2>Custom HVAC Design & Engineering</h2>
+        <p class="lead">Over-specifying systems wastes capital. Under-specifying destroys equipment. We deliver thermal load calculations and duct designs optimized for tropical ambient heat, before a single pipe is laid.</p>
+        <p style="font-size:0.9rem; color:var(--steel); margin-bottom:1.5rem;">This service targets architects, project engineers, and real estate developers before breaking ground. We integrate with your MEP team and deliver BIM-ready handover files.</p>
+        <div class="workflow">
+          <div class="wf-step"><div class="wf-num">1</div><div class="wf-content"><h5>Thermal Load Calculation</h5><p>Localized weather metrics, solar heat gain coefficients, and building material data to calculate exact heat extraction demands for your specific site in Nigeria.</p></div></div>
+          <div class="wf-step"><div class="wf-num">2</div><div class="wf-content"><h5>Ductwork & Airflow Distribution</h5><p>CAD-modelled duct paths ensuring uniform airflow velocities, zero cold spots, and static pressure optimisation across every zone.</p></div></div>
+          <div class="wf-step"><div class="wf-num">3</div><div class="wf-content"><h5>VRF & Equipment Selection</h5><p>Variable speed drives, chillers, or VRF architectures specified to stabilise energy draws under Nigeria's unpredictable grid fluctuations.</p></div></div>
+          <div class="wf-step"><div class="wf-num">4</div><div class="wf-content"><h5>BIM Integration & MEP Handover</h5><p>Comprehensive 3D BIM files and schematic readouts delivered for seamless on-site mechanical deployment and contractor coordination.</p></div></div>
+        </div>
+        <a href="contact.html?service=hvac-design" class="btn btn-primary">Upload architectural layout for review</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INSTALLATION -->
+<section class="svc-section" id="installation">
+  <div class="container">
+    <div class="svc-grid reverse">
+      <div class="svc-img reveal-right">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80" alt="HVAC installation on commercial building" loading="lazy">
+        <div class="svc-img-badge"><i class="fa-solid fa-screwdriver-wrench"></i> Certified installation teams</div>
+      </div>
+      <div class="svc-text reveal-left">
+        <div class="eyebrow">Service 02</div>
+        <h2>VRF & Industrial AC Installation</h2>
+        <p class="lead">Precision deployment of variable refrigerant flow systems, chillers, and split units across commercial, institutional, and industrial environments. Installed right the first time.</p>
+        <ul class="feature-list">
+          <li><i class="fa-solid fa-circle-check"></i> VRF / multi-split systems for commercial offices and hotels</li>
+          <li><i class="fa-solid fa-circle-check"></i> Chiller plant installation for large-floor-plate facilities</li>
+          <li><i class="fa-solid fa-circle-check"></i> Split unit deployment for residential and small commercial</li>
+          <li><i class="fa-solid fa-circle-check"></i> Building Management System (BMS) integration</li>
+          <li><i class="fa-solid fa-circle-check"></i> Full MEP documentation and warranty handover</li>
+          <li><i class="fa-solid fa-circle-check"></i> Brands: Daikin, York, Panasonic, Hitachi, LG</li>
+        </ul>
+        <a href="contact.html?service=installation" class="btn btn-primary">Get an installation quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PIPING -->
+<section class="svc-section" id="piping">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-img reveal-left">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Copper refrigerant conduit piping installation" loading="lazy">
+        <div class="svc-img-badge"><i class="fa-solid fa-pipe-section"></i> 48-hr nitrogen test protocol</div>
+      </div>
+      <div class="svc-text reveal-right">
+        <div class="eyebrow">Service 03</div>
+        <h2>Structural Refrigerant Conduit Piping</h2>
+        <p class="lead">One of the most common HVAC failures in Nigeria: refrigerant leaks hidden behind finished walls. We lay flawless copper conduit piping built to withstand a lifetime of systemic pressure.</p>
+        <p style="font-size:0.9rem; color:var(--steel); margin-bottom:1.5rem;">Leaking refrigerant lines cause compressor failure, structural damp, mould propagation, and complete system loss. Proper piping is non-negotiable — and must be tested before commissioning.</p>
+        <div class="spec-grid">
+          <div class="spec-card"><div class="spec-label">Copper Grade</div><div class="spec-val">Type L thick-wall for commercial</div></div>
+          <div class="spec-card"><div class="spec-label">Insulation</div><div class="spec-val">High-density elastomeric foam</div></div>
+          <div class="spec-card"><div class="spec-label">Test Protocol</div><div class="spec-val">48-hr nitrogen hold at 550 PSI</div></div>
+          <div class="spec-card"><div class="spec-label">Standard</div><div class="spec-val">ASHRAE 15 compliant</div></div>
+        </div>
+        <a href="contact.html?service=piping" class="btn btn-primary">Request a site pipeline inspection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MAINTENANCE & SLAs -->
+<section class="svc-section" id="maintenance">
+  <div class="container">
+    <div class="eyebrow">Service 04</div>
+    <h2 style="max-width:640px; margin-bottom:0.75rem;">Preventative Maintenance & Facility SLAs</h2>
+    <p style="max-width:640px; color:var(--steel); margin-bottom:2.5rem;">Unscheduled AC breakdowns halt operations, degrade equipment, and spike energy bills. Our customized corporate SLA programmes move you from reactive repairs to predictive maintenance — protecting your capital assets.</p>
+    <div style="overflow-x:auto;">
+      <table class="sla-table">
+        <thead>
+          <tr>
+            <th>Service Feature</th>
+            <th>Basic Plan <small style="font-weight:400; opacity:0.7; display:block;">For SMEs</small></th>
+            <th class="featured">Pro Corporate SLA <small style="font-weight:400; opacity:0.8; display:block;">Recommended</small></th>
+            <th>Industrial / Data Centre <small style="font-weight:400; opacity:0.7; display:block;">Mission-critical</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Response window</td><td>Next business day</td><td class="featured">Within 4 hours</td><td>Under 2 hours guaranteed</td></tr>
+          <tr><td>Scheduled cleanings</td><td>Quarterly</td><td class="featured">Bi-monthly</td><td>Monthly checkups</td></tr>
+          <tr><td>Filter replacements</td><td>Annually</td><td class="featured">Every 3 months</td><td>Monthly</td></tr>
+          <tr><td>Compressor analysis</td><td>Visual check only</td><td class="featured">Electrical log analysis</td><td>Vibration & thermal imaging</td></tr>
+          <tr><td>Refrigerant top-ups</td><td>Discounted rate</td><td class="featured">Included up to 15%</td><td>Fully covered</td></tr>
+          <tr><td>Emergency call-outs</td><td><span class="sla-na">Not included</span></td><td class="featured"><span class="sla-check"><i class="fa-solid fa-check"></i> 2 per year</span></td><td><span class="sla-check"><i class="fa-solid fa-check"></i> Unlimited</span></td></tr>
+          <tr><td>Online fault reporting</td><td><span class="sla-na">Not included</span></td><td class="featured"><span class="sla-check"><i class="fa-solid fa-check"></i></span></td><td><span class="sla-check"><i class="fa-solid fa-check"></i></span></td></tr>
+          <tr><td>Dedicated account engineer</td><td><span class="sla-na">Not included</span></td><td class="featured"><span class="sla-na">Not included</span></td><td><span class="sla-check"><i class="fa-solid fa-check"></i></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+      <a href="contact.html?service=maintenance" class="btn btn-primary">Get a custom SLA proposal</a>
+      <p style="font-size:0.85rem; color:var(--fg-muted);">Tell us how many cooling units your facility manages and we'll route you to the right plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DIAGNOSTICS -->
+<section class="svc-section" id="diagnostics">
+  <div class="container">
+    <div class="svc-grid reverse">
+      <div class="svc-img reveal-right">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Advanced HVAC diagnostics and thermal imaging" loading="lazy">
+        <div class="svc-img-badge"><i class="fa-solid fa-magnifying-glass-chart"></i> Thermal imaging diagnostic</div>
+      </div>
+      <div class="svc-text reveal-left">
+        <div class="eyebrow">Service 05</div>
+        <h2>Advanced Diagnostics & Troubleshooting</h2>
+        <p class="lead">When conventional checks fail to identify performance losses, vibration, noise, or unexplained energy spikes — our diagnostic team deploys specialist instrumentation to find the root cause.</p>
+        <ul class="feature-list">
+          <li><i class="fa-solid fa-circle-check"></i> Vibration analysis — detects bearing wear and mechanical imbalance</li>
+          <li><i class="fa-solid fa-circle-check"></i> Thermal imaging — reveals heat buildup and refrigerant flow anomalies</li>
+          <li><i class="fa-solid fa-circle-check"></i> Refrigerant leak tracing — electronic and UV dye detection</li>
+          <li><i class="fa-solid fa-circle-check"></i> Electrical log analysis — motor draw profiling and fault code history</li>
+          <li><i class="fa-solid fa-circle-check"></i> Duct pressure testing — mapping dead zones and airflow losses</li>
+          <li><i class="fa-solid fa-circle-check"></i> Legacy system assessment — compatibility and upgrade pathway reports</li>
+        </ul>
+        <a href="contact.html?service=diagnostics" class="btn btn-primary">Book a diagnostic inspection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <div>
+        <h2>Not sure which service you need?</h2>
+        <p>Call us or submit a brief description — our engineers will advise you at no cost.</p>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; flex-shrink:0;">
+        <a href="contact.html" class="btn btn-outline-white">Contact our engineers</a>
+        <a href="tel:+234" class="btn" style="background:white; color:var(--sky-dark);">Call now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex; margin-bottom:0.5rem;">
+          <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+          <div class="nav-logo-text" style="color:white;">Pafel Solutions<span>Nig. Ltd</span></div>
+        </a>
+        <p>Precision HVAC engineering, design, and facility maintenance for Nigeria's corporate and industrial environments.</p>
+        <div class="footer-socials" style="margin-top:1.5rem;">
+          <a href="https://www.instagram.com/pafelsolutions" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="#hvac-design">HVAC Design & Engineering</a></li>
+        <li><a href="#installation">VRF & AC Installation</a></li>
+        <li><a href="#piping">Refrigerant Piping</a></li>
+        <li><a href="#maintenance">Maintenance & SLAs</a></li>
+        <li><a href="#diagnostics">Advanced Diagnostics</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Case Studies</a></li>
+        <li><a href="procurement.html">Procurement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col footer-contact"><h5>Contact</h5>
+        <p><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</p>
+        <p><i class="fa-solid fa-envelope"></i> info@pafelsolutions.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Abuja, FCT, Nigeria</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pafel Solutions Nig. Ltd. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+document.getElementById('navToggle').addEventListener('click', () => {
+  const m = document.getElementById('mobileMenu'); m.classList.toggle('open');
+  document.getElementById('navToggle').innerHTML = m.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// Active service nav
+const sections = document.querySelectorAll('.svc-section');
+const navLinks = document.querySelectorAll('.svc-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = s.id; });
+  navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+});
+</script>
+</body>
+</html>

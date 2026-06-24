@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pafel Solutions case studies and featured HVAC projects delivered in Abuja, Nigeria — commercial, industrial, residential, and institutional installations.">
+<title>Projects & Case Studies — Pafel Solutions Nig. Ltd</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.page-hero { background:var(--navy); padding:9rem 0 4rem; position:relative; overflow:hidden; }
+.page-hero::after { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=60') center/cover no-repeat; opacity:0.1; z-index:0; }
+.page-hero .container { position:relative; z-index:1; }
+.page-hero h1 { color:white; margin-bottom:0.75rem; }
+.page-hero p { color:rgba(255,255,255,0.6); max-width:520px; }
+.breadcrumb { display:flex; gap:0.5rem; align-items:center; margin-bottom:1.5rem; }
+.breadcrumb a { color:rgba(255,255,255,0.45); font-size:0.8rem; text-decoration:none; font-family:var(--font-heading); }
+.breadcrumb span { color:rgba(255,255,255,0.25); font-size:0.8rem; }
+
+/* FILTER */
+.filter-bar { background:var(--white); border-bottom:1px solid var(--border); padding:1rem 0; position:sticky; top:70px; z-index:50; }
+.filter-inner { display:flex; gap:0.5rem; overflow-x:auto; scrollbar-width:none; }
+.filter-inner::-webkit-scrollbar { display:none; }
+.filter-btn { padding:0.45rem 1.1rem; border-radius:100px; font-family:var(--font-heading); font-size:0.8rem; font-weight:600; border:1.5px solid var(--border); background:transparent; color:var(--steel); cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+.filter-btn.active, .filter-btn:hover { background:var(--sky); color:white; border-color:var(--sky); }
+
+/* PROJECTS */
+.projects-section { padding:5rem 0; }
+.projects-masonry { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.75rem; }
+.case-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; transition:all 0.3s; }
+.case-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.1); }
+.case-card.hidden { display:none; }
+.case-img { position:relative; overflow:hidden; height:220px; }
+.case-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
+.case-card:hover .case-img img { transform:scale(1.05); }
+.case-category { position:absolute; top:0.85rem; left:0.85rem; background:var(--navy); color:white; font-size:0.68rem; font-family:var(--font-heading); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:0.25rem 0.7rem; border-radius:4px; }
+.case-body { padding:1.5rem 1.6rem 1.75rem; }
+.case-type { font-size:0.72rem; color:var(--sky); font-family:var(--font-heading); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem; }
+.case-body h3 { font-size:1rem; color:var(--navy); margin-bottom:0.6rem; line-height:1.35; }
+.case-body p { font-size:0.875rem; color:var(--steel); line-height:1.6; }
+.case-metrics { display:flex; gap:1.25rem; margin-top:1.1rem; padding-top:1rem; border-top:1px solid var(--border); flex-wrap:wrap; }
+.case-metric { text-align:center; }
+.case-metric .val { font-family:var(--font-heading); font-weight:700; font-size:1.1rem; color:var(--navy); }
+.case-metric .lbl { font-size:0.7rem; color:var(--fg-muted); letter-spacing:0.06em; text-transform:uppercase; }
+
+/* STATS STRIP */
+.stats-strip { background:var(--navy); padding:4rem 0; }
+.stats-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:center; }
+.stat-block { padding:1.5rem; }
+.stat-block .num { font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:white; line-height:1; }
+.stat-block .num span { color:var(--sky-light); }
+.stat-block .lbl { font-size:0.82rem; color:rgba(255,255,255,0.5); margin-top:0.35rem; }
+
+@media (max-width:768px) { .stats-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:480px) { .stats-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+      <div class="nav-logo-text">Pafel Solutions<span>Nig. Ltd</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="has-dropdown"><a href="services.html">Services <i class="fa-solid fa-chevron-down" style="font-size:0.65rem; margin-left:2px;"></i></a>
+        <div class="dropdown">
+          <a href="services.html#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design</a>
+          <a href="services.html#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & AC Installation</a>
+          <a href="services.html#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Piping</a>
+          <a href="services.html#maintenance"><i class="fa-solid fa-calendar-check"></i> Maintenance & SLAs</a>
+          <a href="services.html#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnostics</a>
+        </div>
+      </li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="procurement.html">Procurement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+234" class="nav-phone"><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</a>
+      <a href="contact.html" class="btn btn-primary nav-cta">Request Consultation</a>
+      <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+  <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+  <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
+  <a href="projects.html"><i class="fa-solid fa-folder-open"></i> Projects</a>
+  <a href="procurement.html"><i class="fa-solid fa-boxes-stacked"></i> Procurement</a>
+  <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+  <div style="padding-top:1.5rem;"><a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;">Request a Consultation</a></div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="#">Projects</a></div>
+    <div class="eyebrow" style="color:var(--sky-light);">Delivered work</div>
+    <h1>Case Studies & Project Portfolio</h1>
+    <p>100+ completed HVAC installations across Abuja — measured in tonnage delivered, energy saved, and systems maintained.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-block reveal"><div class="num">100<span>+</span></div><div class="lbl">Projects delivered</div></div>
+      <div class="stat-block reveal" style="transition-delay:0.1s"><div class="num">10<span>+</span></div><div class="lbl">Years in service</div></div>
+      <div class="stat-block reveal" style="transition-delay:0.2s"><div class="num">30<span>%</span></div><div class="lbl">Average OpEx savings</div></div>
+      <div class="stat-block reveal" style="transition-delay:0.3s"><div class="num">5</div><div class="lbl">Major OEM partnerships</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="filter-inner container">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All projects</button>
+    <button class="filter-btn" onclick="filterProjects('commercial', this)">Commercial</button>
+    <button class="filter-btn" onclick="filterProjects('industrial', this)">Industrial</button>
+    <button class="filter-btn" onclick="filterProjects('residential', this)">Residential</button>
+    <button class="filter-btn" onclick="filterProjects('institutional', this)">Institutional</button>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects-section">
+  <div class="container">
+    <div class="projects-masonry" id="projectsGrid">
+
+      <div class="case-card reveal" data-cat="institutional">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=75" alt="Hope Alive Christian Centre HVAC" loading="lazy">
+          <span class="case-category">Institutional</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">Multi-zone VRF system</div>
+          <h3>The Oasis, Hope Alive Christian Centre, Mpape, Abuja</h3>
+          <p>Full-facility cooling design and VRF installation across the main auditorium, administration block, and pastoral suites. Thermal load modelling completed before groundbreaking.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">60</div><div class="lbl">Tons capacity</div></div>
+            <div class="case-metric"><div class="val">22%</div><div class="lbl">Energy saved</div></div>
+            <div class="case-metric"><div class="val">Daikin</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" data-cat="commercial" style="transition-delay:0.1s">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=75" alt="Commercial complex HVAC installation" loading="lazy">
+          <span class="case-category">Commercial</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">Precision split & ducted</div>
+          <h3>Commercial Complex, No. 12 Blantyre Street, Abuja</h3>
+          <p>Multi-tenant commercial building requiring independent zone control for each tenancy. Custom duct design ensuring uniform airflow across 8 independent zones.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">8</div><div class="lbl">Zones</div></div>
+            <div class="case-metric"><div class="val">120</div><div class="lbl">sqm/zone</div></div>
+            <div class="case-metric"><div class="val">York</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" data-cat="residential" style="transition-delay:0.2s">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=75" alt="Luxury residential HVAC Kado Estate" loading="lazy">
+          <span class="case-category">Residential</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">Luxury concealed duct system</div>
+          <h3>Dr Umar Tella's Residence, Kado Estate, Abuja</h3>
+          <p>Concealed duct cassette system with individual zoned control across 6 bedrooms, main living areas, and a home office. Low-noise specification throughout.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">6</div><div class="lbl">Zones</div></div>
+            <div class="case-metric"><div class="val">Low-noise</div><div class="lbl">Specification</div></div>
+            <div class="case-metric"><div class="val">Panasonic</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" data-cat="commercial" style="transition-delay:0.3s">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=75" alt="Alpha Praxis corporate complex chiller plant" loading="lazy">
+          <span class="case-category">Corporate</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">Central chiller plant + BMS</div>
+          <h3>Alpha Praxis Nig Ltd Complex, Jahi District, Abuja</h3>
+          <p>Central chilled water plant serving a 4-storey corporate complex. Full BMS integration with real-time monitoring, and comprehensive MEP handover documentation.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">4</div><div class="lbl">Storeys</div></div>
+            <div class="case-metric"><div class="val">BMS</div><div class="lbl">Integrated</div></div>
+            <div class="case-metric"><div class="val">LG</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" data-cat="industrial" style="transition-delay:0.1s">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=75" alt="Data centre precision cooling" loading="lazy">
+          <span class="case-category">Industrial</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">Precision cooling — server room</div>
+          <h3>Data Infrastructure Project, Central Business District, Abuja</h3>
+          <p>CRAC unit deployment for a mid-tier data centre requiring N+1 redundancy, strict thermal tolerance of ±1°C, and 24/7 uptime SLA coverage.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">N+1</div><div class="lbl">Redundancy</div></div>
+            <div class="case-metric"><div class="val">±1°C</div><div class="lbl">Tolerance</div></div>
+            <div class="case-metric"><div class="val">Hitachi</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" data-cat="commercial" style="transition-delay:0.2s">
+        <div class="case-img">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=75" alt="Hotel HVAC installation Abuja" loading="lazy">
+          <span class="case-category">Hospitality</span>
+        </div>
+        <div class="case-body">
+          <div class="case-type">VRF — hotel multi-zone</div>
+          <h3>Boutique Hotel Project, Wuse District, Abuja</h3>
+          <p>VRF system spanning 32 guest rooms plus lobby, restaurant, and conference facilities. Individual room temperature control with centralized building management.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="val">32</div><div class="lbl">Guest rooms</div></div>
+            <div class="case-metric"><div class="val">Central</div><div class="lbl">BMS control</div></div>
+            <div class="case-metric"><div class="val">Daikin</div><div class="lbl">OEM brand</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <div>
+        <h2>Have a project in mind?</h2>
+        <p>Share your brief and we'll respond with a preliminary assessment within one business day.</p>
+      </div>
+      <a href="contact.html" class="btn btn-outline-white">Submit a bid request</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex; margin-bottom:0.5rem;">
+          <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+          <div class="nav-logo-text" style="color:white;">Pafel Solutions<span>Nig. Ltd</span></div>
+        </a>
+        <p>Precision HVAC engineering and facility management — Abuja, Nigeria.</p>
+        <div class="footer-socials" style="margin-top:1.5rem;">
+          <a href="https://www.instagram.com/pafelsolutions" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="services.html#hvac-design">HVAC Design</a></li>
+        <li><a href="services.html#installation">Installation</a></li>
+        <li><a href="services.html#piping">Refrigerant Piping</a></li>
+        <li><a href="services.html#maintenance">Maintenance SLAs</a></li>
+        <li><a href="services.html#diagnostics">Diagnostics</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Case Studies</a></li>
+        <li><a href="procurement.html">Procurement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col footer-contact"><h5>Contact</h5>
+        <p><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</p>
+        <p><i class="fa-solid fa-envelope"></i> info@pafelsolutions.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Abuja, FCT, Nigeria</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pafel Solutions Nig. Ltd. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+document.getElementById('navToggle').addEventListener('click', () => {
+  const m = document.getElementById('mobileMenu'); m.classList.toggle('open');
+  document.getElementById('navToggle').innerHTML = m.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) card.classList.remove('hidden');
+    else card.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

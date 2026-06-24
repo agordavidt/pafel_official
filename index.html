@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pafel Solutions Nig. Ltd — Precision HVAC Engineering, Design & Installation in Abuja, Nigeria. Custom cooling systems for commercial, industrial and residential spaces.">
+<title>Pafel Solutions — Precision HVAC Engineering | Abuja, Nigeria</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden; padding-top: 70px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: var(--navy);
+}
+.hero-img {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80') center/cover no-repeat;
+  opacity: 0.18;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right, rgba(15,23,42,0.96) 55%, rgba(15,23,42,0.5) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: var(--container); margin: 0 auto; padding: 0 1.5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-left { animation: fadeUp 0.9s ease both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(3,105,161,0.2); border: 1px solid rgba(14,165,233,0.3);
+  color: var(--sky-light); font-family: var(--font-heading);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem;
+}
+.hero-badge i { font-size: 0.65rem; }
+.hero h1 { color: white; margin-bottom: 1.25rem; }
+.hero h1 em { font-style: normal; color: var(--sky-light); }
+.hero-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 520px;
+  margin-bottom: 2.25rem; line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.hero-stats { display: flex; gap: 2.5rem; }
+.hstat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: white; line-height: 1; }
+.hstat-num span { color: var(--sky-light); }
+.hstat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+.hero-right { animation: fadeUp 0.9s 0.2s ease both; }
+.hero-card {
+  background: rgba(30,41,59,0.85); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: blur(12px);
+}
+.hero-card h3 { color: white; font-size: 1rem; margin-bottom: 1.25rem; }
+.estimator-form { display: flex; flex-direction: column; gap: 0.9rem; }
+.form-group label { display: block; font-size: 0.8rem; font-family: var(--font-heading); font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+.form-group select, .form-group input {
+  width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius); color: white; font-family: var(--font-body);
+  font-size: 0.9rem; padding: 0.65rem 0.9rem; appearance: none;
+  transition: border-color 0.2s;
+}
+.form-group select:focus, .form-group input:focus { outline: none; border-color: var(--sky-light); }
+.form-group select option { background: var(--navy); }
+
+/* ── TRUST BAR ── */
+.trust-bar { background: var(--navy2); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 0; }
+.trust-inner { display: flex; align-items: center; gap: 2.5rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.trust-inner::-webkit-scrollbar { display: none; }
+.trust-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+.trust-brand { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; flex-shrink: 0; text-transform: uppercase; transition: color 0.2s; }
+.trust-brand:hover { color: rgba(255,255,255,0.65); }
+.trust-stat { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.trust-stat i { color: var(--sky-light); font-size: 0.9rem; }
+.trust-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.55); font-family: var(--font-heading); }
+
+/* ── SERVICES GRID ── */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.svc-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+  transition: all 0.3s; cursor: default; position: relative; overflow: hidden;
+}
+.svc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--sky); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.svc-card:hover { border-color: var(--sky); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(3,105,161,0.12); }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-icon { width: 52px; height: 52px; background: rgba(3,105,161,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+.svc-icon i { color: var(--sky); font-size: 1.3rem; }
+.svc-card h3 { color: var(--navy); margin-bottom: 0.6rem; font-size: 1.05rem; }
+.svc-card p { font-size: 0.875rem; line-height: 1.65; color: var(--steel); }
+.svc-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--sky); font-size: 0.82rem; font-weight: 600; font-family: var(--font-heading); margin-top: 1.1rem; text-decoration: none; transition: gap 0.2s; }
+.svc-link:hover { gap: 0.65rem; }
+
+/* ── ESTIMATOR WIDGET ── */
+.estimator-section { background: var(--navy); padding: 5rem 0; }
+.estimator-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.estimator-left h2 { color: white; margin-bottom: 1rem; }
+.estimator-left p { color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
+.capacity-result {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem; display: none;
+}
+.capacity-result.active { display: block; }
+.result-line { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.result-line:last-child { border-bottom: none; }
+.result-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.result-value { font-family: var(--font-heading); font-weight: 700; color: var(--sky-light); font-size: 1rem; }
+.est-form { background: rgba(30,41,59,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 2.25rem; }
+.est-form h3 { color: white; margin-bottom: 1.5rem; }
+.est-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.est-form .form-group label { color: rgba(255,255,255,0.55); }
+.est-form .form-group select, .est-form .form-group input { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+
+/* ── PROJECTS ── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.proj-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s; }
+.proj-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.proj-img { height: 200px; overflow: hidden; position: relative; }
+.proj-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.proj-card:hover .proj-img img { transform: scale(1.05); }
+.proj-tag {
+  position: absolute; top: 0.85rem; left: 0.85rem;
+  background: var(--navy); color: white; font-size: 0.7rem;
+  font-family: var(--font-heading); font-weight: 600; letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem; border-radius: 4px; text-transform: uppercase;
+}
+.proj-body { padding: 1.4rem 1.5rem 1.6rem; }
+.proj-type { font-size: 0.72rem; color: var(--sky); font-family: var(--font-heading); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.proj-body h4 { color: var(--navy); margin-bottom: 0.5rem; font-size: 1rem; }
+.proj-body p { font-size: 0.85rem; color: var(--steel); line-height: 1.55; }
+.proj-metrics { display: flex; gap: 1rem; margin-top: 1rem; }
+.proj-metric { font-size: 0.75rem; color: var(--fg-muted); display: flex; align-items: center; gap: 0.3rem; }
+.proj-metric i { color: var(--sky); font-size: 0.7rem; }
+
+/* ── HOW IT WORKS ── */
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; position: relative; }
+.how-grid::before {
+  content: ''; position: absolute; top: 40px; left: calc(16.66% + 1.5rem); right: calc(16.66% + 1.5rem);
+  height: 1px; background: var(--border); z-index: 0;
+}
+.how-step { text-align: center; position: relative; z-index: 1; }
+.how-num {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: white; border: 2px solid var(--sky); margin: 0 auto 1.5rem;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--sky);
+  box-shadow: 0 0 0 6px var(--bg);
+}
+.how-step h4 { color: var(--navy); margin-bottom: 0.5rem; }
+.how-step p { font-size: 0.875rem; max-width: 240px; margin: 0 auto; }
+
+/* ── CTA BANNER ── */
+.cta-banner { background: var(--sky); padding: 4.5rem 0; }
+.cta-banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.cta-banner h2 { color: white; font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.cta-banner p { color: rgba(255,255,255,0.8); margin-top: 0.5rem; }
+.cta-banner .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+
+/* ── TESTIMONIAL ── */
+.testimonial-section { background: var(--navy2); padding: 5rem 0; }
+.testimonial-card {
+  max-width: 760px; margin: 3rem auto 0;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+}
+.stars { color: #FBBF24; font-size: 1rem; letter-spacing: 0.1rem; margin-bottom: 1.25rem; }
+.testimonial-card blockquote {
+  font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.75;
+  font-style: italic; margin-bottom: 1.5rem;
+}
+.testimonial-author { display: flex; align-items: center; gap: 1rem; }
+.author-avatar {
+  width: 48px; height: 48px; background: var(--sky); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 700; color: white; font-size: 1rem;
+}
+.author-name { font-family: var(--font-heading); font-weight: 600; color: white; font-size: 0.9rem; }
+.author-title { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-right { display: none; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .estimator-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+  .hero { min-height: auto; padding: 7rem 0 4rem; }
+  .hero-stats { gap: 1.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; }
+  .how-grid::before { display: none; }
+  .est-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+      <div class="nav-logo-text">Pafel Solutions<span>Nig. Ltd</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="has-dropdown">
+        <a href="services.html">Services <i class="fa-solid fa-chevron-down" style="font-size:0.65rem; margin-left:2px;"></i></a>
+        <div class="dropdown">
+          <a href="services.html#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design & Engineering</a>
+          <a href="services.html#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & Industrial AC Installation</a>
+          <a href="services.html#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Conduit Piping</a>
+          <a href="services.html#maintenance"><i class="fa-solid fa-calendar-check"></i> Preventative Maintenance & SLAs</a>
+          <a href="services.html#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Advanced Diagnostics</a>
+        </div>
+      </li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="procurement.html">Procurement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+234" class="nav-phone"><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</a>
+      <a href="contact.html" class="btn btn-primary nav-cta">Request Consultation</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-section">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+  </div>
+  <div class="mobile-menu-label">Services</div>
+  <div class="mobile-menu-section">
+    <a href="services.html#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design</a>
+    <a href="services.html#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & AC Installation</a>
+    <a href="services.html#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Piping</a>
+    <a href="services.html#maintenance"><i class="fa-solid fa-calendar-check"></i> Maintenance & SLAs</a>
+    <a href="services.html#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnostics</a>
+  </div>
+  <div class="mobile-menu-section">
+    <a href="projects.html"><i class="fa-solid fa-folder-open"></i> Projects</a>
+    <a href="procurement.html"><i class="fa-solid fa-boxes-stacked"></i> Procurement</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact & Bid Request</a>
+  </div>
+  <div style="padding-top: 1.5rem;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%; text-align:center;">Request a Consultation</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Abuja's Premium HVAC Engineering Firm</div>
+      <h1>Precision HVAC Engineering for Nigeria's <em>Complex Climates</em></h1>
+      <p class="hero-sub">We design, install, and support energy-efficient cooling systems that cut corporate operating costs by up to 30%. From thermal load calculations to facility SLAs.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary">Request a Technical Consultation</a>
+        <a href="#estimator" class="btn btn-outline-white">Capacity Estimator</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hstat-num">100<span>+</span></div>
+          <div class="hstat-label">Premium projects</div>
+        </div>
+        <div>
+          <div class="hstat-num">10<span>+</span></div>
+          <div class="hstat-label">Years experience</div>
+        </div>
+        <div>
+          <div class="hstat-num">30<span>%</span></div>
+          <div class="hstat-label">Avg. OpEx savings</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <h3><i class="fa-solid fa-calculator" style="color:var(--sky-light); margin-right:0.5rem;"></i> Quick Capacity Estimate</h3>
+        <div class="estimator-form">
+          <div class="form-group">
+            <label>Space type</label>
+            <select id="h-space">
+              <option>Commercial office</option>
+              <option>Data centre / Server room</option>
+              <option>Industrial facility</option>
+              <option>Residential (multi-unit)</option>
+              <option>Hospitality / Hotel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Floor area (sqm)</label>
+            <input type="number" id="h-area" placeholder="e.g. 500" min="10">
+          </div>
+          <div class="form-group">
+            <label>Number of floors</label>
+            <select id="h-floors">
+              <option>1</option><option>2–3</option><option>4–6</option><option>7+</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="quickEstimate()">Calculate Requirements</button>
+          <div id="h-result" style="display:none; margin-top:0.75rem; background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.25); border-radius:6px; padding:1rem;">
+            <p id="h-result-text" style="color:rgba(255,255,255,0.85); font-size:0.875rem; line-height:1.6;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <span class="trust-brand">Daikin</span>
+      <div class="trust-divider"></div>
+      <span class="trust-brand">York</span>
+      <div class="trust-divider"></div>
+      <span class="trust-brand">Panasonic</span>
+      <div class="trust-divider"></div>
+      <span class="trust-brand">Hitachi</span>
+      <div class="trust-divider"></div>
+      <span class="trust-brand">LG</span>
+      <div class="trust-divider"></div>
+      <div class="trust-stat"><i class="fa-solid fa-shield-halved"></i><span>HVAC Certified Engineers</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat"><i class="fa-solid fa-location-dot"></i><span>Abuja, Nigeria</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat"><i class="fa-solid fa-clock"></i><span>24/7 Emergency Support</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section-py">
+  <div class="container">
+    <div class="eyebrow">What we do</div>
+    <h2 style="max-width:560px;">End-to-end HVAC engineering, from blueprint to facility SLA</h2>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+        <h3>Custom HVAC Design & Engineering</h3>
+        <p>Thermal load calculations, ductwork design, VRF selection, and BIM-ready MEP blueprints tailored to Nigeria's tropical ambient heat.</p>
+        <a href="services.html#hvac-design" class="svc-link">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.1s">
+        <div class="svc-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>VRF & Industrial AC Installation</h3>
+        <p>Precision deployment of variable refrigerant flow systems, chillers, and split units across commercial, institutional, and industrial environments.</p>
+        <a href="services.html#installation" class="svc-link">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.2s">
+        <div class="svc-icon"><i class="fa-solid fa-pipe-section"></i></div>
+        <h3>Refrigerant Conduit Piping</h3>
+        <p>Structural copper conduit piping with mandatory 48-hour nitrogen pressure testing. Eliminate leaks hidden behind finished walls permanently.</p>
+        <a href="services.html#piping" class="svc-link">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.3s">
+        <div class="svc-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3>Preventative Maintenance & SLAs</h3>
+        <p>Corporate maintenance agreements with response windows as low as 2 hours. Predictive servicing that protects capital assets and maximises uptime.</p>
+        <a href="services.html#maintenance" class="svc-link">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.4s">
+        <div class="svc-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Advanced Diagnostics & Troubleshooting</h3>
+        <p>Vibration analysis, thermal imaging, refrigerant leak tracing, and electrical log diagnosis for complex or legacy HVAC systems.</p>
+        <a href="services.html#diagnostics" class="svc-link">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.5s">
+        <div class="svc-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <h3>Commercial AC & Spares Supply</h3>
+        <p>Direct procurement of OEM-certified equipment and spare parts. Genuine products from Daikin, York, Panasonic and more, delivered to site.</p>
+        <a href="procurement.html" class="svc-link">Explore procurement <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATOR WIDGET -->
+<section class="estimator-section" id="estimator">
+  <div class="container">
+    <div class="estimator-inner">
+      <div class="estimator-left reveal-left">
+        <div class="eyebrow" style="color:var(--sky-light);">Interactive tool</div>
+        <h2 style="color:white;">HVAC Capacity & Budget Estimator</h2>
+        <p>Over-specifying systems wastes capital. Under-specifying destroys equipment. Use this tool to get a preliminary sizing estimate — then our engineers will refine it with localized weather data and on-site thermal surveys.</p>
+        <div class="capacity-result" id="cap-result">
+          <div class="result-line"><span class="result-label">Estimated cooling load</span><span class="result-value" id="r-load">—</span></div>
+          <div class="result-line"><span class="result-label">Recommended system type</span><span class="result-value" id="r-type">—</span></div>
+          <div class="result-line"><span class="result-label">Indicative unit count</span><span class="result-value" id="r-units">—</span></div>
+          <div class="result-line"><span class="result-label">Next step</span><span class="result-value" style="color:#4ADE80; font-size:0.85rem;">Request a full thermal survey</span></div>
+        </div>
+        <a href="contact.html" class="btn btn-outline-white" style="margin-top:1.75rem;">Book a Free Site Assessment</a>
+      </div>
+      <div class="est-form reveal-right">
+        <h3><i class="fa-solid fa-sliders" style="color:var(--sky-light); margin-right:0.5rem;"></i> Project Parameters</h3>
+        <div class="est-grid">
+          <div class="form-group">
+            <label>Space type</label>
+            <select id="e-space">
+              <option value="office">Commercial office</option>
+              <option value="data">Data centre / Server room</option>
+              <option value="industrial">Industrial facility</option>
+              <option value="residential">Residential</option>
+              <option value="hospitality">Hospitality</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Floor area (sqm)</label>
+            <input type="number" id="e-area" placeholder="e.g. 500" min="10">
+          </div>
+          <div class="form-group">
+            <label>Number of floors</label>
+            <select id="e-floors">
+              <option value="1">1 floor</option>
+              <option value="2.5">2–3 floors</option>
+              <option value="5">4–6 floors</option>
+              <option value="8">7+ floors</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Occupancy level</label>
+            <select id="e-occ">
+              <option value="low">Low (< 10 people)</option>
+              <option value="medium">Medium (10–50)</option>
+              <option value="high">High (50–200)</option>
+              <option value="critical">Critical / 24-hour</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label>Primary concern</label>
+            <select id="e-concern">
+              <option>Energy efficiency / OpEx reduction</option>
+              <option>Maximum uptime / redundancy</option>
+              <option>Precise temperature control</option>
+              <option>Budget optimisation</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:100%; margin-top:1.25rem;" onclick="fullEstimate()">Generate Estimate</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section class="section-py bg-muted">
+  <div class="container">
+    <div class="eyebrow">Delivered work</div>
+    <h2>Featured installations in Abuja</h2>
+    <p style="max-width:540px; margin-top:0.5rem;">Every project is measured by tonnage delivered, energy saved, and client confidence maintained.</p>
+    <div class="projects-grid">
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=75" alt="Commercial office HVAC installation" loading="lazy">
+          <span class="proj-tag">Commercial</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Multi-zone VRF system</div>
+          <h4>The Oasis, Hope Alive Christian Centre, Mpape</h4>
+          <p>Full-facility cooling design and VRF installation across the main auditorium, admin block, and pastoral suites.</p>
+          <div class="proj-metrics">
+            <span class="proj-metric"><i class="fa-solid fa-snowflake"></i> 60 TR capacity</span>
+            <span class="proj-metric"><i class="fa-solid fa-bolt"></i> 22% energy saving</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal" style="transition-delay:0.1s">
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=75" alt="Commercial complex HVAC" loading="lazy">
+          <span class="proj-tag">Corporate</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Precision split & ducted</div>
+          <h4>Commercial Complex, No. 12 Blantyre Street</h4>
+          <p>Multi-tenant commercial building — custom duct design ensuring uniform airflow across 8 tenancy zones.</p>
+          <div class="proj-metrics">
+            <span class="proj-metric"><i class="fa-solid fa-snowflake"></i> 120 sqm per zone</span>
+            <span class="proj-metric"><i class="fa-solid fa-users"></i> 8 tenants served</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal" style="transition-delay:0.2s">
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=75" alt="Residential HVAC Kado Estate" loading="lazy">
+          <span class="proj-tag">Residential</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Luxury residential</div>
+          <h4>Dr Umar Tella's Residence, Kado Estate</h4>
+          <p>Concealed duct cassette system with zoned control across 6 bedrooms, living areas, and a dedicated home office.</p>
+          <div class="proj-metrics">
+            <span class="proj-metric"><i class="fa-solid fa-home"></i> 6-zone control</span>
+            <span class="proj-metric"><i class="fa-solid fa-gauge-high"></i> Low noise spec</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal" style="transition-delay:0.3s">
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=75" alt="Corporate HVAC Alpha Praxis" loading="lazy">
+          <span class="proj-tag">Corporate</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Industrial chiller plant</div>
+          <h4>Alpha Praxis Nig Ltd Complex, Jahi District</h4>
+          <p>Central chilled water plant serving a 4-storey corporate complex with BMS integration and full MEP handover documentation.</p>
+          <div class="proj-metrics">
+            <span class="proj-metric"><i class="fa-solid fa-building"></i> 4 storeys</span>
+            <span class="proj-metric"><i class="fa-solid fa-microchip"></i> BMS integrated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="projects.html" class="btn btn-outline">View all projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-py">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">Our process</div>
+      <h2>From enquiry to operational system in three structured steps</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="how-num">01</div>
+        <h4>Review your service requirements</h4>
+        <p>Browse our service descriptions and identify your engineering challenge — design, installation, maintenance, or procurement.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:0.15s">
+        <div class="how-num">02</div>
+        <h4>Consult a certified engineer</h4>
+        <p>Reach our technical team for a free consultation, site visit scheduling, or project scoping session.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:0.3s">
+        <div class="how-num">03</div>
+        <h4>Request a site visit & proposal</h4>
+        <p>Our engineers assess the site, produce thermal load calculations, and deliver a detailed proposal with timeline and cost breakdown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center; color:var(--sky-light);">Client feedback</div>
+    <h2 style="color:white;">What clients say</h2>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Thank you Engr Wisdom at Pafel Solutions for your swift response. My ACs are chilling so well — the difference in performance since the installation is remarkable. Highly recommend their technical team."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">DN</div>
+        <div>
+          <div class="author-name">Dr Nwanisiobi</div>
+          <div class="author-title">Verified client — Abuja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <div>
+        <h2>Ready to engineer your cooling infrastructure?</h2>
+        <p>Our technical team is available for free consultations and site assessments across Abuja.</p>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; flex-shrink:0;">
+        <a href="contact.html" class="btn btn-outline-white">Request a Consultation</a>
+        <a href="tel:+234" class="btn" style="background:white; color:var(--sky-dark);">Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem; display:inline-flex;">
+          <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
+          <div class="nav-logo-text" style="color:white;">Pafel Solutions<span>Nig. Ltd</span></div>
+        </a>
+        <p>Precision HVAC engineering, design, and facility maintenance for Nigeria's corporate and industrial environments. Based in Abuja.</p>
+        <div class="footer-socials" style="margin-top:1.5rem;">
+          <a href="https://www.instagram.com/pafelsolutions" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#hvac-design">HVAC Design & Engineering</a></li>
+          <li><a href="services.html#installation">VRF & AC Installation</a></li>
+          <li><a href="services.html#piping">Refrigerant Piping</a></li>
+          <li><a href="services.html#maintenance">Maintenance & SLAs</a></li>
+          <li><a href="services.html#diagnostics">Advanced Diagnostics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="projects.html">Case Studies</a></li>
+          <li><a href="procurement.html">Procurement</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h5>Contact</h5>
+        <p><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</p>
+        <p><i class="fa-solid fa-envelope"></i> info@pafelsolutions.com</p>
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp available</p>
+        <p><i class="fa-solid fa-location-dot"></i> Abuja, Federal Capital Territory, Nigeria</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pafel Solutions Nig. Ltd. All rights reserved.</p>
+      <p>Custom HVAC solutions — Excellence in comfort, efficiency, and reliability.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+// Mobile menu
+document.getElementById('navToggle').addEventListener('click', () => {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.getElementById('navToggle').innerHTML = m.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+
+// Intersection Observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// Quick estimator (hero)
+function quickEstimate() {
+  const area = parseFloat(document.getElementById('h-area').value);
+  if (!area || area < 10) { alert('Please enter a valid floor area.'); return; }
+  const load = Math.round(area * 0.15 * 10) / 10;
+  const tons = Math.round(load / 3.517 * 10) / 10;
+  const el = document.getElementById('h-result');
+  document.getElementById('h-result-text').innerHTML = `Estimated cooling load: <strong>${load} kW (${tons} TR)</strong>. Recommend a <strong>VRF or multi-split system</strong>. Contact us for a full thermal survey and exact specification.`;
+  el.style.display = 'block';
+}
+
+// Full estimator
+function fullEstimate() {
+  const area = parseFloat(document.getElementById('e-area').value);
+  const floors = parseFloat(document.getElementById('e-floors').value);
+  const space = document.getElementById('e-space').value;
+  const occ = document.getElementById('e-occ').value;
+  if (!area || area < 10) { alert('Please enter a floor area.'); return; }
+  const multipliers = { office: 0.15, data: 0.35, industrial: 0.22, residential: 0.12, hospitality: 0.18 };
+  const occBonus = { low: 0, medium: 0.015, high: 0.03, critical: 0.06 };
+  const m = (multipliers[space] || 0.15) + (occBonus[occ] || 0);
+  const totalArea = area * floors;
+  const load = Math.round(totalArea * m * 10) / 10;
+  const tons = Math.round(load / 3.517 * 10) / 10;
+  const units = Math.ceil(tons / 5);
+  const types = { office: 'Multi-split / VRF system', data: 'Precision cooling / CRAC units', industrial: 'Chiller plant or industrial packaged unit', residential: 'Concealed duct cassette system', hospitality: 'VRF with individual zone control' };
+  document.getElementById('r-load').textContent = `${load} kW / ${tons} TR`;
+  document.getElementById('r-type').textContent = types[space] || 'VRF system';
+  document.getElementById('r-units').textContent = `~${units} indoor unit${units > 1 ? 's' : ''}`;
+  document.getElementById('cap-result').classList.add('active');
+  document.getElementById('cap-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>
