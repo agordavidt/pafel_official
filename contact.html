@@ -24,15 +24,7 @@
 
 <!-- Preloader -->
 <div id="preloader">
-  <svg id="preloader-mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M30 6 L54 26 V54 H36 V36 H24 V54 H6 V26 Z" stroke="url(#preGrad)" stroke-width="3" stroke-linejoin="round" fill="none"/>
-    <defs>
-      <linearGradient id="preGrad" x1="6" y1="6" x2="54" y2="54" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#710053"/>
-        <stop offset="1" stop-color="#fd70c8"/>
-      </linearGradient>
-    </defs>
-  </svg>
+  <img id="preloader-mark" src="assets/images/preloder1.png" alt="Pafel Solutions">
 </div>
 
 <!-- Navbar -->
@@ -50,17 +42,16 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="index.html#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+          <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Services</a>
           <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-            <li><a class="dropdown-item" href="services/hvac-design.html">HVAC Design</a></li>
-            <li><a class="dropdown-item" href="services/installation.html">Installation</a></li>
-            <li><a class="dropdown-item" href="services/maintenance.html">Maintenance</a></li>
-            <li><a class="dropdown-item" href="services/sales-consulting.html">Sales Consulting</a></li>
+            <li><a class="dropdown-item" href="services.html#hvac-design">HVAC Design</a></li>
+            <li><a class="dropdown-item" href="services.html#installation">Installation</a></li>
+            <li><a class="dropdown-item" href="services.html#maintenance">Maintenance &amp; SLAs</a></li>
+            <li><a class="dropdown-item" href="services.html#sales-consulting">Sales Consulting</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>        
         <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
         <li class="nav-item ms-lg-3">
           <button type="button" class="btn btn-magenta btn-sm" data-bs-toggle="modal" data-bs-target="#assessmentModal">Book Site Assessment</button>
@@ -71,10 +62,9 @@
 </nav>
 
 <!-- Page header -->
-<header class="page-header" style="background-image: src('./assets/images/hero.jpg');">
+<header class="page-header">
   <div class="container" data-aos="fade-up">   
-    <h1>Contact Us</h1>
-    <p class="page-header-sub">Have a project in mind or a question about your HVAC system? Reach us directly, or send a message below.</p>
+    <h1>Contact Us</h1>   
   </div>
 </header>
 
