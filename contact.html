@@ -3,402 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact Pafel Solutions Nig. Ltd — Request a technical HVAC consultation, bid, or site assessment in Abuja, Nigeria.">
-<title>Contact & Bid Request — Pafel Solutions Nig. Ltd</title>
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-.page-hero { background:var(--navy); padding:9rem 0 4rem; position:relative; overflow:hidden; }
-.page-hero::after { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=60') center/cover no-repeat; opacity:0.07; z-index:0; }
-.page-hero .container { position:relative; z-index:1; }
-.page-hero h1 { color:white; margin-bottom:0.75rem; }
-.page-hero p { color:rgba(255,255,255,0.6); max-width:520px; }
-.breadcrumb { display:flex; gap:0.5rem; align-items:center; margin-bottom:1.5rem; }
-.breadcrumb a { color:rgba(255,255,255,0.45); font-size:0.8rem; text-decoration:none; font-family:var(--font-heading); }
-.breadcrumb span { color:rgba(255,255,255,0.25); font-size:0.8rem; }
+<title>Contact — Pafel Solutions</title>
+<meta name="description" content="Get in touch with Pafel Solutions Nigeria Limited. Email, call, or visit our Abuja office, or send us a message directly.">
 
-/* CONTACT LAYOUT */
-.contact-section { padding:6rem 0; }
-.contact-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:4rem; align-items:start; }
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-/* SIDEBAR */
-.contact-sidebar {}
-.contact-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.75rem; margin-bottom:1.25rem; }
-.contact-card h4 { color:var(--navy); margin-bottom:1rem; font-size:0.95rem; }
-.contact-method { display:flex; align-items:flex-start; gap:0.85rem; margin-bottom:1.1rem; }
-.contact-method:last-child { margin-bottom:0; }
-.cm-icon { width:40px; height:40px; background:rgba(3,105,161,0.08); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.cm-icon i { color:var(--sky); font-size:0.95rem; }
-.cm-label { font-size:0.72rem; font-family:var(--font-heading); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-muted); margin-bottom:0.2rem; }
-.cm-value { font-size:0.9rem; color:var(--navy); font-weight:500; }
-.cm-value a { color:var(--sky); text-decoration:none; }
-.cm-value a:hover { text-decoration:underline; }
-.availability { margin-top:0.85rem; }
-.avail-row { display:flex; justify-content:space-between; font-size:0.82rem; padding:0.45rem 0; border-bottom:1px solid var(--border); }
-.avail-row:last-child { border-bottom:none; }
-.avail-day { color:var(--steel); }
-.avail-time { color:var(--navy); font-weight:500; font-family:var(--font-heading); }
-.response-badge { background:rgba(3,105,161,0.08); border:1px solid rgba(3,105,161,0.2); border-radius:var(--radius); padding:0.75rem 1rem; display:flex; align-items:center; gap:0.65rem; margin-top:1rem; }
-.response-badge i { color:var(--sky); }
-.response-badge span { font-size:0.82rem; color:var(--steel); }
-.response-badge strong { color:var(--navy); }
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-/* FORM */
-.bid-form-wrap { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2.5rem; }
-.bid-form-wrap h3 { color:var(--navy); margin-bottom:0.35rem; }
-.bid-form-wrap .form-intro { font-size:0.9rem; color:var(--steel); margin-bottom:2rem; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-.field { margin-bottom:1.25rem; }
-.field label { display:block; font-size:0.78rem; font-family:var(--font-heading); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--steel); margin-bottom:0.4rem; }
-.field input, .field select, .field textarea {
-  width:100%; border:1.5px solid var(--border); border-radius:var(--radius);
-  font-family:var(--font-body); font-size:0.9rem; color:var(--fg);
-  padding:0.7rem 0.95rem; transition:border-color 0.2s, box-shadow 0.2s;
-  background:var(--bg); appearance:none;
-}
-.field input:focus, .field select:focus, .field textarea:focus {
-  outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(3,105,161,0.1);
-}
-.field textarea { resize:vertical; min-height:120px; }
-.field.required label::after { content:' *'; color:var(--sky); }
-.form-section-label { font-size:0.72rem; font-family:var(--font-heading); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--sky); border-top:1px solid var(--border); padding-top:1.5rem; margin-bottom:1.25rem; margin-top:0.5rem; }
-.file-upload { border:2px dashed var(--border); border-radius:var(--radius); padding:1.5rem; text-align:center; cursor:pointer; transition:all 0.2s; background:var(--bg); }
-.file-upload:hover { border-color:var(--sky); background:rgba(3,105,161,0.04); }
-.file-upload i { font-size:1.5rem; color:var(--fg-muted); margin-bottom:0.5rem; display:block; }
-.file-upload p { font-size:0.82rem; color:var(--fg-muted); }
-.file-upload strong { color:var(--sky); }
-.submit-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-top:0.5rem; }
-.submit-row p { font-size:0.8rem; color:var(--fg-muted); }
-.submit-row p i { color:var(--sky); margin-right:0.3rem; }
-.form-success { display:none; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius); padding:1.5rem; text-align:center; margin-top:1.5rem; }
-.form-success.active { display:block; }
-.form-success i { font-size:2rem; color:#16A34A; margin-bottom:0.75rem; display:block; }
-.form-success h4 { color:var(--navy); }
-.form-success p { font-size:0.875rem; color:var(--steel); margin-top:0.4rem; }
+<!-- AOS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-@media (max-width:900px) { .contact-grid { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } }
-</style>
+<!-- Site styles -->
+<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
-      <div class="nav-logo-text">Pafel Solutions<span>Nig. Ltd</span></div>
+<!-- Preloader -->
+<div id="preloader">
+  <svg id="preloader-mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 6 L54 26 V54 H36 V36 H24 V54 H6 V26 Z" stroke="url(#preGrad)" stroke-width="3" stroke-linejoin="round" fill="none"/>
+    <defs>
+      <linearGradient id="preGrad" x1="6" y1="6" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#710053"/>
+        <stop offset="1" stop-color="#fd70c8"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 L21 10 V21 H15 V15 H9 V21 H3 V10 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-word">Pafel <strong>Solutions</strong></span>
     </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li class="has-dropdown"><a href="services.html">Services <i class="fa-solid fa-chevron-down" style="font-size:0.65rem; margin-left:2px;"></i></a>
-        <div class="dropdown">
-          <a href="services.html#hvac-design"><i class="fa-solid fa-drafting-compass"></i> Custom HVAC Design</a>
-          <a href="services.html#installation"><i class="fa-solid fa-screwdriver-wrench"></i> VRF & AC Installation</a>
-          <a href="services.html#piping"><i class="fa-solid fa-pipe-section"></i> Refrigerant Piping</a>
-          <a href="services.html#maintenance"><i class="fa-solid fa-calendar-check"></i> Maintenance & SLAs</a>
-          <a href="services.html#diagnostics"><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnostics</a>
-        </div>
-      </li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="procurement.html">Procurement</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="tel:+234" class="nav-phone"><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</a>
-      <a href="contact.html" class="btn btn-primary nav-cta">Request Consultation</a>
-      <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="toggler-bar"></span>
+      <span class="toggler-bar"></span>
+      <span class="toggler-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="index.html#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+          <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+            <li><a class="dropdown-item" href="services/hvac-design.html">HVAC Design</a></li>
+            <li><a class="dropdown-item" href="services/installation.html">Installation</a></li>
+            <li><a class="dropdown-item" href="services/maintenance.html">Maintenance</a></li>
+            <li><a class="dropdown-item" href="services/sales-consulting.html">Sales Consulting</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#insights">Insights</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <button type="button" class="btn btn-magenta btn-sm" data-bs-toggle="modal" data-bs-target="#assessmentModal">Book Site Assessment</button>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-  <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
-  <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
-  <a href="projects.html"><i class="fa-solid fa-folder-open"></i> Projects</a>
-  <a href="procurement.html"><i class="fa-solid fa-boxes-stacked"></i> Procurement</a>
-  <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
-  <div style="padding-top:1.5rem;"><a href="#bid-form" class="btn btn-primary" style="width:100%;text-align:center;">Go to bid form</a></div>
-</div>
 
-<div class="page-hero">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="#">Contact</a></div>
-    <div class="eyebrow" style="color:var(--sky-light);">Get in touch</div>
-    <h1>Contact & Bid Request</h1>
-    <p>Describe your project — our engineers will review your requirements and respond within one business day.</p>
+<!-- Page header -->
+<header class="page-header">
+  <div class="container" data-aos="fade-up">
+    <span class="eyebrow">Get in Touch</span>
+    <h1>Contact Pafel Solutions</h1>
+    <p class="page-header-sub">Have a project in mind or a question about your HVAC system? Reach us directly, or send a message below.</p>
   </div>
-</div>
+</header>
 
-<section class="contact-section">
+<!-- Contact info band -->
+<section class="contact-band">
+  <div class="contact-band-bg"></div>
   <div class="container">
-    <div class="contact-grid">
-
-      <!-- SIDEBAR -->
-      <div class="contact-sidebar reveal-left">
-        <div class="contact-card">
-          <h4>Direct contact</h4>
-          <div class="contact-method">
-            <div class="cm-icon"><i class="fa-solid fa-phone"></i></div>
-            <div>
-              <div class="cm-label">Phone</div>
-              <div class="cm-value"><a href="tel:+234">+234 (0) 810 000 0000</a></div>
-            </div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <div>
-              <div class="cm-label">WhatsApp</div>
-              <div class="cm-value"><a href="https://wa.me/234" target="_blank" rel="noopener">Open WhatsApp chat</a></div>
-            </div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="cm-label">Email</div>
-              <div class="cm-value"><a href="mailto:info@pafelsolutions.com">info@pafelsolutions.com</a></div>
-            </div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon"><i class="fa-brands fa-instagram"></i></div>
-            <div>
-              <div class="cm-label">Instagram</div>
-              <div class="cm-value"><a href="https://www.instagram.com/pafelsolutions" target="_blank" rel="noopener">@pafelsolutions</a></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <h4>Operating hours</h4>
-          <div class="availability">
-            <div class="avail-row"><span class="avail-day">Monday – Friday</span><span class="avail-time">8:00 AM – 6:00 PM</span></div>
-            <div class="avail-row"><span class="avail-day">Saturday</span><span class="avail-time">9:00 AM – 3:00 PM</span></div>
-            <div class="avail-row"><span class="avail-day">Sunday</span><span class="avail-time">Emergency only</span></div>
-          </div>
-          <div class="response-badge"><i class="fa-solid fa-bolt"></i><span><strong>24/7 emergency line</strong> available for SLA clients</span></div>
-        </div>
-
-        <div class="contact-card">
-          <h4>Location</h4>
-          <div class="contact-method">
-            <div class="cm-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <div class="cm-label">Address</div>
-              <div class="cm-value">Abuja, Federal Capital Territory, Nigeria</div>
-            </div>
-          </div>
-          <div style="margin-top:1rem; border-radius:var(--radius); overflow:hidden; height:160px; background:var(--bg2); display:flex; align-items:center; justify-content:center; border:1px solid var(--border);">
-            <p style="font-size:0.8rem; color:var(--fg-muted); text-align:center;"><i class="fa-solid fa-map-pin" style="display:block; font-size:1.5rem; color:var(--sky); margin-bottom:0.5rem;"></i>Abuja, FCT<br>Nigeria</p>
-          </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="contact-band-item" data-aos="fade-up">
+          <span class="contact-band-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Email Us</h3>
+          <p><a href="mailto:admin@pafelsolutions.com">admin@pafelsolutions.com</a><br><a href="mailto:pafelsolutions@gmail.com">pafelsolutions@gmail.com</a></p>
         </div>
       </div>
-
-      <!-- BID FORM -->
-      <div class="bid-form-wrap reveal-right" id="bid-form">
-        <h3>Request a Technical Consultation or Bid</h3>
-        <p class="form-intro">Fill in your project details below. The more context you provide, the faster our engineers can prepare a relevant proposal for you.</p>
-
-        <form id="contactForm" onsubmit="submitForm(event)" novalidate>
-
-          <!-- Contact info -->
-          <div class="form-row">
-            <div class="field required">
-              <label>Full name</label>
-              <input type="text" id="f-name" placeholder="Engr. John Adamu" required>
-            </div>
-            <div class="field required">
-              <label>Organisation</label>
-              <input type="text" id="f-org" placeholder="Alpha Praxis Nig. Ltd" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field required">
-              <label>Email address</label>
-              <input type="email" id="f-email" placeholder="john@company.com" required>
-            </div>
-            <div class="field required">
-              <label>Phone / WhatsApp</label>
-              <input type="tel" id="f-phone" placeholder="+234 800 000 0000" required>
-            </div>
-          </div>
-          <div class="field">
-            <label>Your role</label>
-            <select id="f-role">
-              <option value="">— Select your role —</option>
-              <option>Facility Manager</option>
-              <option>Project Engineer / MEP Consultant</option>
-              <option>Real Estate Developer</option>
-              <option>Architect</option>
-              <option>Corporate Procurement Officer</option>
-              <option>Business Owner / Director</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="form-section-label">Project details</div>
-
-          <div class="form-row">
-            <div class="field required">
-              <label>Service required</label>
-              <select id="f-service" required>
-                <option value="">— Select a service —</option>
-                <option>Custom HVAC Design & Engineering</option>
-                <option>VRF & Industrial AC Installation</option>
-                <option>Refrigerant Conduit Piping</option>
-                <option>Preventative Maintenance / SLA</option>
-                <option>Advanced Diagnostics & Troubleshooting</option>
-                <option>Commercial AC & Spares Supply</option>
-                <option>Multiple services / Full project</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Project location</label>
-              <input type="text" id="f-location" placeholder="e.g. Jahi District, Abuja">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label>Facility type</label>
-              <select id="f-facility">
-                <option>Commercial office</option>
-                <option>Data centre / Server room</option>
-                <option>Industrial / warehouse</option>
-                <option>Religious / community hall</option>
-                <option>Hotel / hospitality</option>
-                <option>Residential (luxury / multi-unit)</option>
-                <option>Government / institutional</option>
-                <option>Healthcare facility</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Floor area (sqm)</label>
-              <input type="number" id="f-area" placeholder="e.g. 1200" min="10">
-            </div>
-          </div>
-          <div class="field">
-            <label>Number of AC units / zones (if known)</label>
-            <input type="text" id="f-units" placeholder="e.g. 12 units across 3 floors">
-          </div>
-          <div class="field required">
-            <label>Project description</label>
-            <textarea id="f-desc" placeholder="Describe your project, current challenges, timeline, and any specific technical requirements. The more detail, the better." required></textarea>
-          </div>
-          <div class="field">
-            <label>Budget range</label>
-            <select id="f-budget">
-              <option value="">— Prefer not to say —</option>
-              <option>Under ₦500,000</option>
-              <option>₦500,000 – ₦2M</option>
-              <option>₦2M – ₦5M</option>
-              <option>₦5M – ₦20M</option>
-              <option>Above ₦20M</option>
-            </select>
-          </div>
-
-          <div class="form-section-label">Attachments (optional)</div>
-          <div class="file-upload" onclick="document.getElementById('f-file').click()">
-            <input type="file" id="f-file" style="display:none;" accept=".pdf,.dwg,.jpg,.png,.doc,.docx" multiple onchange="showFileName(this)">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <p><strong>Upload architectural drawings, site photos, or specs</strong><br>PDF, DWG, JPG, PNG, DOC — max 10MB per file</p>
-            <p id="file-name" style="margin-top:0.5rem; color:var(--sky); font-size:0.8rem; display:none;"></p>
-          </div>
-
-          <div class="submit-row" style="margin-top:1.5rem;">
-            <p><i class="fa-solid fa-lock"></i> Your information is kept strictly confidential.</p>
-            <button type="submit" class="btn btn-primary">Submit bid request</button>
-          </div>
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          <i class="fa-solid fa-circle-check"></i>
-          <h4>Request received</h4>
-          <p>Thank you. Our engineering team will review your project details and respond within one business day. For urgent matters, call us directly on <a href="tel:+234" style="color:var(--sky);">+234 (0) 810 000 0000</a>.</p>
+      <div class="col-md-4">
+        <div class="contact-band-item" data-aos="fade-up" data-aos-delay="80">
+          <span class="contact-band-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15.9 15.9 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 9 9 0 0 0 2.8.45 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1 9 9 0 0 0 .45 2.8 1 1 0 0 1-.25 1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Call Us</h3>
+          <p><a href="tel:+2347056077711">+234 705 607 7711</a><br><a href="tel:+2348032486440">+234 803 248 6440</a></p>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="contact-band-item" data-aos="fade-up" data-aos-delay="160">
+          <span class="contact-band-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <h3>Our Office Location</h3>
+          <p>Suite 205, HGC Plaza, No. 14 Alexandra Crescent,<br>Wuse 2 (Banex), Abuja</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="contact-band-bar"></div> -->
+</section>
 
+<!-- Map + message form -->
+<section class="contact-main">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=Suite+205,+HGC+Plaza,+No.+14+Alexandra+Crescent,+Wuse+2+(Banex),+Abuja&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Pafel Solutions office location — Wuse 2, Abuja"></iframe>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="contact-form-wrap">
+          <span class="eyebrow">Send a Message</span>
+          <h2>General enquiries</h2>
+          <p class="contact-form-sub">For anything outside a site assessment — partnerships, procurement questions, or general enquiries — send a quick message and we'll reply by email.</p>
+          <form id="contactForm" class="booking-form" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="cName">Full name *</label>
+                <input type="text" class="form-control" id="cName" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="cEmail">Email *</label>
+                <input type="email" class="form-control" id="cEmail" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="cSubject">Subject</label>
+                <input type="text" class="form-control" id="cSubject">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="cMessage">Message *</label>
+                <textarea class="form-control" id="cMessage" rows="4" required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-magenta btn-lg w-100 mt-3" id="cSubmit">Send Message</button>          
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
+<!-- Footer -->
+<footer id="contact">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo" style="display:inline-flex; margin-bottom:0.5rem;">
-          <div class="nav-logo-icon"><i class="fa-solid fa-wind"></i></div>
-          <div class="nav-logo-text" style="color:white;">Pafel Solutions<span>Nig. Ltd</span></div>
+    <div class="row g-4 footer-grid">
+      <div class="col-lg-4">
+        <a class="navbar-brand footer-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 L21 10 V21 H15 V15 H9 V21 H3 V10 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="brand-word">Pafel <strong>Solutions</strong></span>
         </a>
-        <p>Precision HVAC engineering, design, and facility maintenance for Nigeria's corporate and industrial environments.</p>
-        <div class="footer-socials" style="margin-top:1.5rem;">
-          <a href="https://www.instagram.com/pafelsolutions" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
+        <p class="footer-tag">Precision engineering for optimized climate control across Nigeria.</p>
       </div>
-      <div class="footer-col"><h5>Services</h5><ul>
-        <li><a href="services.html#hvac-design">HVAC Design</a></li>
-        <li><a href="services.html#installation">Installation</a></li>
-        <li><a href="services.html#piping">Refrigerant Piping</a></li>
-        <li><a href="services.html#maintenance">Maintenance SLAs</a></li>
-        <li><a href="services.html#diagnostics">Diagnostics</a></li>
-      </ul></div>
-      <div class="footer-col"><h5>Company</h5><ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="projects.html">Case Studies</a></li>
-        <li><a href="procurement.html">Procurement</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul></div>
-      <div class="footer-col footer-contact"><h5>Contact</h5>
-        <p><i class="fa-solid fa-phone"></i> +234 (0) 810 000 0000</p>
-        <p><i class="fa-solid fa-envelope"></i> info@pafelsolutions.com</p>
-        <p><i class="fa-solid fa-location-dot"></i> Abuja, FCT, Nigeria</p>
+      <div class="col-6 col-lg-2">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#projects">Case Studies</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Contact</h5>
+        <ul class="footer-contact">
+          <li><a href="tel:+2347056077711">+234 705 607 7711</a></li>
+          <li><a href="mailto:admin@pafelsolutions.com">admin@pafelsolutions.com</a></li>
+          <li><span>Suite 205, HGC Plaza, No. 14 Alexandra Crescent, Wuse 2 (Banex), Abuja</span></li>
+        </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Pafel Solutions Nig. Ltd. All rights reserved.</p>
+      <span>© 2026 Pafel Solutions Nigeria Limited. All rights reserved.</span>
     </div>
   </div>
 </footer>
 
-<script>
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
-document.getElementById('navToggle').addEventListener('click', () => {
-  const m = document.getElementById('mobileMenu'); m.classList.toggle('open');
-  document.getElementById('navToggle').innerHTML = m.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
-});
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+<!-- Book Site Assessment Modal -->
+<div class="modal fade assessment-modal" id="assessmentModal" tabindex="-1" aria-labelledby="assessmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="assessmentModalLabel">Book a Site Assessment</h2>
+          <p class="modal-subtitle">Pick a date and share your project details — our engineering team will confirm within one business day.</p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <!-- Calendar & time -->
+          <div class="col-lg-5">
+            <div class="booking-panel">
+              <span class="step-label"><span class="step-num">1</span>Select date &amp; time</span>
 
-// Pre-fill service from URL
-const params = new URLSearchParams(window.location.search);
-if (params.get('service')) {
-  const map = { 'hvac-design':'Custom HVAC Design & Engineering', 'installation':'VRF & Industrial AC Installation', 'piping':'Refrigerant Conduit Piping', 'maintenance':'Preventative Maintenance / SLA', 'diagnostics':'Advanced Diagnostics & Troubleshooting' };
-  const sel = document.getElementById('f-service');
-  const val = map[params.get('service')];
-  if (val) for (let o of sel.options) if (o.text === val) { o.selected = true; break; }
-}
+              <div class="cal-header">
+                <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">←</button>
+                <span id="calMonthLabel" class="cal-month"></span>
+                <button type="button" class="cal-nav" id="calNext" aria-label="Next month">→</button>
+              </div>
+              <div class="cal-weekdays">
+                <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+              </div>
+              <div class="cal-grid" id="calGrid"></div>
 
-function showFileName(input) {
-  const el = document.getElementById('file-name');
-  if (input.files.length) { el.textContent = Array.from(input.files).map(f => f.name).join(', '); el.style.display = 'block'; }
-}
+              <div class="time-section">
+                <span class="time-label">Available times</span>
+                <div class="time-grid" id="timeGrid"></div>
+                <p class="time-empty" id="timeEmpty">Select a date to see available times.</p>
+              </div>
+            </div>
+          </div>
 
-function submitForm(e) {
-  e.preventDefault();
-  const req = ['f-name','f-org','f-email','f-phone','f-service','f-desc'];
-  let valid = true;
-  req.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el.value.trim()) { el.style.borderColor = '#DC2626'; valid = false; }
-    else el.style.borderColor = '';
-  });
-  if (!valid) { alert('Please fill in all required fields.'); return; }
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('formSuccess').classList.add('active');
-  document.getElementById('formSuccess').scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-</script>
+          <!-- Form -->
+          <div class="col-lg-7">
+            <span class="step-label"><span class="step-num">2</span>Project details</span>
+            <form id="assessmentForm" class="booking-form" novalidate>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="bkName">Full name *</label>
+                  <input type="text" class="form-control" id="bkName" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="bkPhone">Phone number *</label>
+                  <input type="tel" class="form-control" id="bkPhone" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="bkProject">Project type</label>
+                  <select class="form-select" id="bkProject">
+                    <option>Commercial Building</option>
+                    <option>Premium Residential</option>
+                    <option>Industrial / Server Facility</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="bkSystem">Preferred system</label>
+                  <select class="form-select" id="bkSystem">
+                    <option>I'm not sure / need advice</option>
+                    <option>VRV / VRF Systems</option>
+                    <option>Ceiling Concealed / Ducted</option>
+                    <option>Ceiling Cassette</option>
+                    <option>High Wall Split</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="bkScope">Scope / description</label>
+                  <textarea class="form-control" id="bkScope" rows="3"></textarea>
+                </div>
+              </div>
+
+              <p class="selected-summary" id="selectedSummary">No date selected yet.</p>
+
+              <button type="submit" class="btn btn-magenta btn-lg w-100" id="bkSubmit">Confirm Appointment</button>
+              <p class="booking-note">No commitment for the initial assessment.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating WhatsApp button -->
+<a href="https://wa.me/2340000000000?text=Hi%20Pafel%20Solutions%2C%20I%27d%20like%20to%20ask%20about%20your%20HVAC%20services."
+   class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Pafel Solutions on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M23.5 8.4A9.9 9.9 0 0 0 16 5.1a9.9 9.9 0 0 0-8.6 14.9L6 27l7.2-1.9a9.9 9.9 0 0 0 2.8.4 9.9 9.9 0 0 0 7-16.9v-.2zM16 24a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-4.3 1.1 1.2-4.2-.2-.3A8.2 8.2 0 1 1 24 15.8 8.2 8.2 0 0 1 16 24z" fill="currentColor"/>
+    <path d="M20.4 18.1c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1s-.7.9-.9 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.4-3 7.7 7.7 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5.3-.4a.6.6 0 0 0 0-.5c-.1-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.6 1.1 2.8.1.2 2 3.1 4.9 4.3a16 16 0 0 0 1.7.6 4 4 0 0 0 1.8.1 3 3 0 0 0 2-1.4 2.4 2.4 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z" fill="currentColor"/>
+  </svg>
+  <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
