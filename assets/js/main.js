@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+
+  var WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+
   /* ---------- Preloader ---------- */
   var preloader = document.getElementById('preloader');
   window.addEventListener('load', function () {
@@ -20,15 +23,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Sticky nav ---------- */
   var nav = document.getElementById('mainNav');
+  var svcSubnav = document.getElementById('svcSubnav');
   var onScroll = function () {
     if (window.scrollY > 40) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
     }
+    if (svcSubnav) {
+      svcSubnav.style.top = nav.offsetHeight + 'px';
+    }
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
 
   /* ---------- Hero entrance (GSAP) ---------- */
   if (window.gsap) {
@@ -72,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  var statStrip = document.querySelector('.stat-strip');
+  var statStrip = document.querySelector('.stat-strip, .stats-band');
   if (statStrip && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -269,34 +277,176 @@ document.addEventListener('DOMContentLoaded', function () {
       var dateLabel = weekdayNames[selectedDate.getDay()] + ', ' + selectedDate.getDate() + ' ' +
         monthNames[selectedDate.getMonth()] + ' ' + selectedDate.getFullYear();
 
-      // NOTE: replace with Pafel Solutions' actual WhatsApp business number
+      var bkStatus = document.getElementById('bkStatus');
+
+      // ---- Email via Web3Forms (sends to pafelsolutions@gmail.com, attachment included on Pro) ----
+      var formData = new FormData(bookingForm);
+      formData.set('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.set('subject', 'New Site Assessment Booking — ' + name);
+      formData.set('from_name', 'Pafel Solutions Website');
+      formData.set('name', name);
+      formData.set('phone', phone);
+      formData.set('project_type', project);
+      formData.set('preferred_system', system);
+      formData.set('scope', scope);
+      formData.set('preferred_date', dateLabel);
+      formData.set('preferred_time', selectedTime);
+
+      // ---- WhatsApp deep link (instant notification, kept alongside email) ----
       var whatsappNumber = '2340000000000';
-      var message = 'PAFEL SOLUTIONS: New Site Assessment Request%0A' +
+      var waMessage = 'PAFEL SOLUTIONS: New Site Assessment Request%0A' +
         'Date: ' + encodeURIComponent(dateLabel) + ' at ' + encodeURIComponent(selectedTime) + '%0A' +
         'Name: ' + encodeURIComponent(name) + '%0A' +
         'Phone: ' + encodeURIComponent(phone) + '%0A' +
         'Project type: ' + encodeURIComponent(project) + '%0A' +
         'Preferred system: ' + encodeURIComponent(system) + '%0A' +
         'Scope: ' + encodeURIComponent(scope);
-      var waLink = 'https://wa.me/' + whatsappNumber + '?text=' + message;
+      var waLink = 'https://wa.me/' + whatsappNumber + '?text=' + waMessage;
 
       bkSubmit.disabled = true;
-      bkSubmit.textContent = 'Opening WhatsApp…';
+      bkSubmit.textContent = 'Sending…';
+      if (bkStatus) { bkStatus.textContent = ''; bkStatus.className = 'form-status'; }
 
-      setTimeout(function () {
-        window.open(waLink, '_blank');
-        var instance = bootstrap.Modal.getOrCreateInstance(modalEl);
-        instance.hide();
-        bookingForm.reset();
-        bkSubmit.disabled = false;
-        bkSubmit.textContent = 'Confirm Appointment';
-      }, 700);
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+        .then(function (response) { return response.json(); })
+        .then(function (result) {
+          if (bkStatus) {
+            bkStatus.textContent = result.success
+              ? 'Booking sent — we\'ll confirm shortly.'
+              : 'Could not send automatically — please confirm via WhatsApp.';
+            bkStatus.classList.add(result.success ? 'is-success' : 'is-error');
+          }
+        })
+        .catch(function () {
+          if (bkStatus) {
+            bkStatus.textContent = 'Could not send automatically — please confirm via WhatsApp.';
+            bkStatus.classList.add('is-error');
+          }
+        })
+        .finally(function () {
+          window.open(waLink, '_blank');
+          var instance = bootstrap.Modal.getOrCreateInstance(modalEl);
+          setTimeout(function () { instance.hide(); }, 900);
+          bookingForm.reset();
+          bkSubmit.disabled = false;
+          bkSubmit.textContent = 'Confirm Appointment';
+        });
     });
   }
 
-  /* ---------- Contact page: general enquiry form (mailto) ---------- */
+  /* ---------- Services page: sub-nav scroll-spy ---------- */
+  var svcLinks = document.querySelectorAll('.svc-subnav-link');
+  if (svcLinks.length) {
+    var svcSections = Array.prototype.map.call(svcLinks, function (link) {
+      return document.querySelector(link.getAttribute('href'));
+    });
+
+    var setActiveSvcLink = function () {
+      var scrollPos = window.scrollY + 140;
+      var current = svcSections[0];
+      svcSections.forEach(function (section) {
+        if (section && section.offsetTop <= scrollPos) current = section;
+      });
+      svcLinks.forEach(function (link) {
+        var match = current && link.getAttribute('href') === '#' + current.id;
+        link.classList.toggle('is-active', !!match);
+      });
+    };
+
+    setActiveSvcLink();
+    window.addEventListener('scroll', setActiveSvcLink, { passive: true });
+  }
+
+  /* ---------- Projects page: photo lightbox ---------- */
+  var lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    var lbImg = document.getElementById('lightboxImg');
+    var lbCaption = document.getElementById('lightboxCaption');
+    var lbCounter = document.getElementById('lightboxCounter');
+    var lbClose = document.getElementById('lightboxClose');
+    var lbPrev = document.getElementById('lightboxPrev');
+    var lbNext = document.getElementById('lightboxNext');
+
+    var currentSet = [];
+    var currentIndex = 0;
+
+    function renderLightboxImage() {
+      var item = currentSet[currentIndex];
+      lbImg.classList.add('is-fading');
+      setTimeout(function () {
+        lbImg.src = item.src;
+        lbImg.alt = item.alt;
+        lbCaption.textContent = item.caption;
+        lbCounter.textContent = (currentIndex + 1) + ' / ' + currentSet.length;
+        lbImg.classList.remove('is-fading');
+      }, 150);
+    }
+
+    function openLightbox(galleryId, startSrc) {
+      var nodes = document.querySelectorAll('[data-gallery="' + galleryId + '"]');
+      currentSet = Array.prototype.map.call(nodes, function (node) {
+        return {
+          src: node.getAttribute('src').replace(/w=\d+/, 'w=1600'),
+          alt: node.getAttribute('alt') || '',
+          caption: node.getAttribute('data-caption') || ''
+        };
+      });
+      currentIndex = Math.max(0, Array.prototype.findIndex.call(nodes, function (node) {
+        return node.getAttribute('src') === startSrc;
+      }));
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      renderLightboxImage();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.js-gallery-img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        openLightbox(img.getAttribute('data-gallery'), img.getAttribute('src'));
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    lbPrev.addEventListener('click', function () {
+      currentIndex = (currentIndex - 1 + currentSet.length) % currentSet.length;
+      renderLightboxImage();
+    });
+    lbNext.addEventListener('click', function () {
+      currentIndex = (currentIndex + 1) % currentSet.length;
+      renderLightboxImage();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbPrev.click();
+      if (e.key === 'ArrowRight') lbNext.click();
+    });
+  }
+
+  /* ---------- Contact page: general enquiry form ---------- */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    var serviceLabels = {
+      'hvac-design': 'HVAC Design enquiry',
+      'installation': 'Installation enquiry',
+      'maintenance': 'Maintenance & SLA enquiry',
+      'sales-consulting': 'Sales Consulting enquiry'
+    };
+    var serviceParam = new URLSearchParams(window.location.search).get('service');
+    var cSubjectField = document.getElementById('cSubject');
+    if (serviceParam && serviceLabels[serviceParam] && cSubjectField && !cSubjectField.value) {
+      cSubjectField.value = serviceLabels[serviceParam];
+    }
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!contactForm.checkValidity()) {
@@ -308,17 +458,49 @@ document.addEventListener('DOMContentLoaded', function () {
       var subject = document.getElementById('cSubject').value.trim() || 'Website enquiry';
       var message = document.getElementById('cMessage').value.trim();
 
-      var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
-      var mailLink = 'mailto:admin@pafelsolutions.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-
       var cSubmit = document.getElementById('cSubmit');
-      cSubmit.textContent = 'Opening your email app…';
-      setTimeout(function () {
-        window.location.href = mailLink;
-        cSubmit.textContent = 'Send Message';
-        contactForm.reset();
-      }, 500);
+      var cStatus = document.getElementById('cStatus');
+
+      var formData = new FormData();
+      formData.set('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.set('subject', 'Pafel Solutions — ' + subject);
+      formData.set('from_name', 'Pafel Solutions Website');
+      formData.set('name', name);
+      formData.set('email', email);
+      formData.set('message', message);
+
+      cSubmit.disabled = true;
+      cSubmit.textContent = 'Sending…';
+      if (cStatus) { cStatus.textContent = ''; cStatus.className = 'form-status'; }
+
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+        .then(function (response) { return response.json(); })
+        .then(function (result) {
+          if (result.success) {
+            if (cStatus) {
+              cStatus.textContent = 'Message sent — we\'ll reply by email soon.';
+              cStatus.classList.add('is-success');
+            }
+            contactForm.reset();
+          } else {
+            throw new Error('Web3Forms rejected the submission');
+          }
+        })
+        .catch(function () {
+          // Fallback so the message is never lost if the API call fails
+          var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
+          var mailLink = 'mailto:pafelsolutions@gmail.com?subject=' +
+            encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          window.location.href = mailLink;
+          if (cStatus) {
+            cStatus.textContent = 'Opening your email app instead — please hit send there.';
+            cStatus.classList.add('is-error');
+          }
+        })
+        .finally(function () {
+          cSubmit.disabled = false;
+          cSubmit.textContent = 'Send Message';
+        });
     });
   }
 
@@ -333,5 +515,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
-

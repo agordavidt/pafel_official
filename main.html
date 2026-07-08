@@ -39,7 +39,10 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="#top">
-      <img src="assets/images/logo_light.png" alt="logo" class="brand-mark" >      
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 L21 10 V21 H15 V15 H9 V21 H3 V10 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-word">Pafel <strong>Solutions</strong></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="toggler-bar"></span>
@@ -48,19 +51,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Services</a>
+          <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
           <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-            <li><a class="dropdown-item" href="services/hvac-design.html">HVAC Design</a></li>
-            <li><a class="dropdown-item" href="services/installation.html">Installation</a></li>
-            <li><a class="dropdown-item" href="services/maintenance.html">Maintenance</a></li>
-            <li><a class="dropdown-item" href="services/sales-consulting.html">Sales Consulting</a></li>
+            <li><a class="dropdown-item" href="services.html#hvac-design">HVAC Design</a></li>
+            <li><a class="dropdown-item" href="services.html#installation">Installation</a></li>
+            <li><a class="dropdown-item" href="services.html#maintenance">Maintenance</a></li>
+            <li><a class="dropdown-item" href="services.html#sales-consulting">Sales Consulting</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="#insights">Insights</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item ms-lg-3">
           <button type="button" class="btn btn-magenta btn-sm" data-bs-toggle="modal" data-bs-target="#assessmentModal">Book Site Assessment</button>
@@ -73,43 +75,39 @@
 <!-- Hero -->
 <header class="hero" id="top">
   <div class="container">
-    <div class="hero-panel" data-aos="fade-up">
-      <div class="hero-panel-grid">
-        <div class="hero-panel-copy">
-         
-          <h1>World-Class HVAC Engineering &amp; Automated Climate Solutions</h1>
-          <p class="hero-panel-sub"> Serving commercial, industrial, and luxury residential sectors across Nigeria. Delivering precision engineering, uncompromising reliability, and optimized energy efficiency.</p>
-          <div class="hero-actions">            
-            <a href="projects.html" class="btn btn-outline-invert btn-lg">Explore Projects</a>
-          </div>
-        </div>
-        <div class="hero-panel-media">
-          <img src="assets/images/hero_section.png" alt="Industrial HVAC chiller units on a commercial rooftop">       
+    <div class="row align-items-center hero-grid">
+      <div class="col-lg-6 hero-copy" data-aos="fade-up">        
+        <h1>World-Class HVAC Engineering &amp; Automated Climate Solutions</h1>
+        <p class="hero-sub">Serving commercial, industrial, and luxury residential sectors across Nigeria. Delivering precision engineering, uncompromising reliability, and optimized energy efficiency.</p>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-magenta btn-lg" data-bs-toggle="modal" data-bs-target="#assessmentModal">Book Site Assessment</button>
+          <a href="projects.html" class="btn btn-outline-ink btn-lg">Explore Projects</a>
         </div>
       </div>
-
-      <div class="hero-float-cards">
-        <div class="hero-float-card hero-float-card-dark" data-aos="fade-up" data-aos-delay="120">
-          <span class="hero-float-icon">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 20L20 4M9 15l1.5-1.5M13 11l1.5-1.5M17 7l1.5-1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-          <div>
-            <h4>Precision Load Design</h4>
-            <p>Every system sized from real calculations, never guesswork.</p>
-          </div>
-        </div>
-        <div class="hero-float-card hero-float-card-accent" data-aos="fade-up" data-aos-delay="200">
-          <span class="hero-float-icon">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <h4>Premium Service</h4>
-            <p>Certified engineers on call when facilities can't afford downtime.</p>
-          </div>
+      <div class="col-lg-6 hero-media" data-aos="fade-left" data-aos-delay="150">
+        <div class="hero-media-frame">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" alt="Industrial HVAC chiller units on a commercial rooftop">
         </div>
       </div>
+    </div>
 
-      <button type="button" class="hero-scroll-btn" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to services">↓</button>
+    <div class="stat-strip" data-aos="fade-up" data-aos-delay="250">
+      <div class="stat-item">
+        <span class="stat-num" data-count="150">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label">Installations Delivered</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="8">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label">Years of Engineering Practice</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="24">0</span><span class="stat-suffix">/7</span>
+        <span class="stat-label">Emergency Response</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span>
+        <span class="stat-label">Certified Engineers</span>
+      </div>
     </div>
   </div>
 </header>
@@ -117,50 +115,53 @@
 <!-- Services -->
 <section class="services" id="services">
   <div class="container">
-    <div class="services-head" data-aos="fade-up">      
-      <h2>We engineer climate control with precision in mind</h2>
-      <p class="services-sub">Our mission is to deliver HVAC systems that perform reliably in Nigeria's climate and grid conditions, from first blueprint to ongoing preventative care.</p>
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Engineering Services</span>
+      <h2>Comprehensive lifecycle solutions, from initial blueprint to ongoing preventative maintenance.</h2>
     </div>
 
-    <div class="services-grid-v2">
-      <div class="service-card-v2" data-aos="fade-up" data-aos-delay="0">
-        <span class="service-icon-v2">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <div class="service-card-v2-text">
+    <div class="row g-4 services-grid">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <a class="service-card" href="services.html#hvac-design">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
           <h3>HVAC Design</h3>
           <p>Load calculations, blueprint drafting, and energy-efficient system modelling for new constructions.</p>
-        </div>
+          <span class="service-more">Learn more →</span>
+        </a>
       </div>
-      <div class="service-card-v2" data-aos="fade-up" data-aos-delay="90">
-        <span class="service-icon-v2">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <div class="service-card-v2-text">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+        <a class="service-card" href="services.html#installation">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
           <h3>Installation</h3>
           <p>Precision deployment of VRV/VRF systems, chillers, and extensive duct networks by certified engineers.</p>
-        </div>
+          <span class="service-more">Learn more →</span>
+        </a>
       </div>
-      <div class="service-card-v2" data-aos="fade-up" data-aos-delay="180">
-        <span class="service-icon-v2">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span>
-        <div class="service-card-v2-text">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+        <a class="service-card" href="services.html#maintenance">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
           <h3>Maintenance</h3>
           <p>Scheduled preventative servicing and 24/7 emergency response to minimize facility downtime.</p>
-        </div>
+          <span class="service-more">Learn more →</span>
+        </a>
       </div>
-      <div class="service-card-v2" data-aos="fade-up" data-aos-delay="270">
-        <span class="service-icon-v2">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <div class="service-card-v2-text">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+        <a class="service-card" href="services.html#sales-consulting">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
           <h3>Sales Consulting</h3>
           <p>Procurement advisory for premium brands including Daikin, York, and Panasonic industrial units.</p>
-        </div>
+          <span class="service-more">Learn more →</span>
+        </a>
       </div>
     </div>
- 
   </div>
 </section>
 
@@ -170,10 +171,11 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-5" data-aos="fade-right">
         <div class="benefits-media">
-          <img src="assets/images/manwork.png" alt="Engineer inspecting an industrial cooling system">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000&auto=format&fit=crop" alt="Engineer inspecting an industrial cooling system">
         </div>
       </div>
-      <div class="col-lg-7" data-aos="fade-left">       
+      <div class="col-lg-7" data-aos="fade-left">
+        <span class="eyebrow eyebrow-light">Why Pafel</span>
         <h2>Precision engineering built for Nigeria's climate and grid realities.</h2>
         <ul class="benefits-list">
           <li>
@@ -214,15 +216,17 @@
 <section class="deployments" id="projects">
   <div class="container">
     <div class="section-head split" data-aos="fade-up">
-      <div>       
+      <div>
+        <span class="eyebrow">Featured Deployments</span>
         <h2>A selection of our high-capacity installations.</h2>
-      </div>     
+      </div>
+      <a href="projects.html" class="link-arrow">View All Projects →</a>
     </div>
 
     <div class="row g-4 deployment-grid">
       <div class="col-lg-7" data-aos="fade-up">
-        <a class="project-card project-card-lg" href="#">
-          <img src="assets/images/photo1.jpeg" alt="Data center server aisle with cooling infrastructure">
+        <a class="project-card project-card-lg" href="projects.html">
+          <img src="https://images.unsplash.com/photo-1580584126903-c17d41830450?q=80&w=1400&auto=format&fit=crop" alt="Data center server aisle with cooling infrastructure">
           <div class="project-overlay">
             <div class="project-tags">
               <span class="tag">Data Center</span>
@@ -235,15 +239,15 @@
       </div>
       <div class="col-lg-5">
         <div class="deployment-stack">
-          <a class="project-card project-card-sm" href="#" data-aos="fade-up" data-aos-delay="80">
-            <img src="assets/images/photo9.jpeg" alt="Modern commercial office building interior">
+          <a class="project-card project-card-sm" href="projects.html" data-aos="fade-up" data-aos-delay="80">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1000&auto=format&fit=crop" alt="Modern commercial office building interior">
             <div class="project-overlay">
               <div class="project-tags"><span class="tag">Commercial Complex</span></div>
               <h3>Victoria Island HQ</h3>
             </div>
           </a>
-          <a class="project-card project-card-sm" href="#" data-aos="fade-up" data-aos-delay="160">
-            <img src="assets/images/photo23.jpeg" alt="Luxury residential apartment exterior at dusk">
+          <a class="project-card project-card-sm" href="projects.html" data-aos="fade-up" data-aos-delay="160">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop" alt="Luxury residential apartment exterior at dusk">
             <div class="project-overlay">
               <div class="project-tags"><span class="tag">Luxury Residential</span></div>
               <h3>Ikoyi Residences VRF</h3>
@@ -258,7 +262,8 @@
 <!-- Testimonials -->
 <section class="testimonials" data-aos="fade-up">
   <div class="container">
-    <div class="section-head" style="margin-bottom:36px;" >     
+    <div class="section-head" style="margin-bottom:36px;">
+      <span class="eyebrow eyebrow-light">Client Feedback</span>
       <h2 class="text-white-heading">Trusted by facility owners and site engineers across Nigeria.</h2>
     </div>
 
@@ -318,17 +323,20 @@
     <div class="row g-4 footer-grid">
       <div class="col-lg-4">
         <a class="navbar-brand footer-brand" href="#top">
-          <img src="assets/images/logo_dark.png" alt="logo" class="brand-mark">          
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 L21 10 V21 H15 V15 H9 V21 H3 V10 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="brand-word">Pafel <strong>Solutions</strong></span>
         </a>
         <p class="footer-tag">Precision engineering for optimized climate control across Nigeria.</p>
       </div>
       <div class="col-6 col-lg-2">
         <h5>Company</h5>
         <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Case Studies</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="col-6 col-lg-2">
@@ -345,7 +353,7 @@
           <li><a href="mailto:admin@pafelsolutions.com">admin@pafelsolutions.com</a></li>
           <li><span>Suite 205, HGC Plaza, No. 14 Alexandra Crescent, Wuse 2 (Banex), Abuja</span></li>
         </ul>
-        <!-- <a href="contact.html" class="link-arrow footer-contact-link">Full Contact Details →</a> -->
+        <a href="contact.html" class="link-arrow footer-contact-link">Full Contact Details →</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -425,11 +433,17 @@
                   <label class="form-label" for="bkScope">Scope / description</label>
                   <textarea class="form-control" id="bkScope" rows="3" placeholder="Briefly describe your cooling needs..."></textarea>
                 </div>
+                <div class="col-12">
+                  <label class="form-label" for="bkFile">Attach floor plan or photo (optional)</label>
+                  <input type="file" class="form-control" id="bkFile" name="attachment" accept="image/*,.pdf">
+                  <p class="file-hint">Max 5MB — image or PDF.</p>
+                </div>
               </div>
 
               <p class="selected-summary" id="selectedSummary">No date selected yet.</p>
 
               <button type="submit" class="btn btn-magenta btn-lg w-100" id="bkSubmit">Confirm Appointment</button>
+              <p class="form-status" id="bkStatus"></p>
               <p class="booking-note">No commitment for the initial assessment.</p>
             </form>
           </div>
