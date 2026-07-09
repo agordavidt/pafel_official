@@ -21,22 +21,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Sticky nav ---------- */
-  var nav = document.getElementById('mainNav');
-  var svcSubnav = document.getElementById('svcSubnav');
-  var onScroll = function () {
-    if (window.scrollY > 40) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-    if (svcSubnav) {
-      svcSubnav.style.top = nav.offsetHeight + 'px';
-    }
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+ /* ---------- Sticky nav ---------- */
+var nav = document.getElementById('mainNav');
+var svcSubnav = document.getElementById('svcSubnav');
+
+// Pages with a dark .page-header need light nav text until the user scrolls
+// past it and the white "scrolled" backdrop kicks in.
+if (document.querySelector('.page-header')) {
+  nav.classList.add('nav-on-dark');
+}
+
+var onScroll = function () {
+  if (window.scrollY > 40) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  if (svcSubnav) {
+    svcSubnav.style.top = nav.offsetHeight + 'px';
+  }
+};
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll);
 
   /* ---------- Hero entrance (GSAP) ---------- */
   if (window.gsap) {
