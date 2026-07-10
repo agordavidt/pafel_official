@@ -85,7 +85,12 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Services</a>
+          <div class="nav-link-split">
+            <a class="nav-link" href="services.html" id="servicesDropdown">Services</a>
+            <button type="button" class="dropdown-caret-btn" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle Services submenu">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
           <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
             <li><a class="dropdown-item" href="services.html#hvac-design">HVAC Design</a></li>
             <li><a class="dropdown-item" href="services.html#installation">Installation</a></li>
@@ -205,6 +210,7 @@
     </div>
 
     <div class="table-responsive" data-aos="fade-up">
+      <div class="table-scroll">
       <table class="sla-table">
         <thead>
           <tr>
@@ -224,6 +230,7 @@
           <tr><td>Dedicated account engineer</td><td><span class="sla-na">Not included</span></td><td class="is-featured"><span class="sla-na">Not included</span></td><td><span class="sla-yes">✓</span></td></tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </section>

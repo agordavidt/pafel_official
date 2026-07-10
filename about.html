@@ -27,7 +27,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/favicon.png">
@@ -85,7 +85,12 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Services</a>
+        <div class="nav-link-split">
+          <a class="nav-link" href="services.html" id="servicesDropdown">Services</a>
+          <button type="button" class="dropdown-caret-btn" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle Services submenu">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
           <li><a class="dropdown-item" href="services.html#hvac-design">HVAC Design</a></li>
           <li><a class="dropdown-item" href="services.html#installation">Installation</a></li>
@@ -224,49 +229,6 @@
     </div>
   </div>
 </section>
-
-<!-- Team -->
-<!-- <section class="team">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <h2>Meet our team of experts</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="team-card">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop" alt="Portrait of Engr. Wisdom Okoro"></div>
-          <h4>Engr. Wisdom Okoro</h4>
-          <span class="team-role">Founder &amp; Lead Design Engineer</span>
-          <span class="team-cred">COREN Registered Practice</span>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
-        <div class="team-card">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop" alt="Portrait of Engr. Amaka Chukwu"></div>
-          <h4>Engr. Amaka Chukwu</h4>
-          <span class="team-role">Head of Installations</span>
-          <span class="team-cred">Daikin &amp; York Specialist</span>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
-        <div class="team-card">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop" alt="Portrait of Engr. Tunde Bakare"></div>
-          <h4>Engr. Tunde Bakare</h4>
-          <span class="team-role">Maintenance &amp; Service Manager</span>
-          <span class="team-cred">Panasonic Certified</span>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-        <div class="team-card">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop" alt="Portrait of Blessing Eze"></div>
-          <h4>Blessing Eze</h4>
-          <span class="team-role">Client Relations &amp; Procurement</span>
-          <span class="team-cred">Sales Architecture</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 <!-- Safety & standards -->
 <section class="safety">

@@ -27,7 +27,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/favicon.png">
@@ -85,7 +85,12 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Services</a>
+        <div class="nav-link-split">
+          <a class="nav-link" href="services.html" id="servicesDropdown">Services</a>
+          <button type="button" class="dropdown-caret-btn" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle Services submenu">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
           <li><a class="dropdown-item" href="services.html#hvac-design">HVAC Design</a></li>
           <li><a class="dropdown-item" href="services.html#installation">Installation</a></li>

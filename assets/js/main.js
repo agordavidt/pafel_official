@@ -103,6 +103,17 @@ window.addEventListener('resize', onScroll);
     animateCounters();
   }
 
+  /* ---------- Nav: close mobile menu whenever a dropdown item is tapped ---------- */
+  document.querySelectorAll('.dropdown-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      var navMenuEl = document.getElementById('navMenu');
+      if (navMenuEl) {
+        var collapseInst = bootstrap.Collapse.getInstance(navMenuEl);
+        if (collapseInst) collapseInst.hide();
+      }
+    });
+  });
+
   /* ---------- Booking modal: dynamic calendar + time slots ---------- */
   var modalEl = document.getElementById('assessmentModal');
   if (modalEl) {
@@ -522,5 +533,3 @@ window.addEventListener('resize', onScroll);
     });
   }
 });
-
-

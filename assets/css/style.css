@@ -32,12 +32,21 @@
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+
+/* FIX: overflow-x must be constrained at the <html> level too, not just <body>.
+   iOS Safari calculates horizontal scrollability from <html>; leaving it open
+   there is what let the page pan sideways and caused fixed-position elements
+   (preloader, navbar) to visually detach from the viewport on mobile. */
+html, body{
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body{
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--off-white);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -96,9 +105,6 @@ p{ color: var(--gray-500); margin:0; }
 /* ============================
    Preloader
    ============================ */
-/* ============================
-   Preloader
-   ============================ */
 #preloader{
   position: fixed; inset:0; z-index: 2000;
   background: var(--off-white);
@@ -132,18 +138,44 @@ p{ color: var(--gray-500); margin:0; }
   padding: 10px 0;
   box-shadow: 0 1px 0 var(--gray-200);
 }
+
+/* FIX: mobile nav background must respect .nav-on-dark the same way desktop does.
+   Previously this rule forced a light bar unconditionally on mobile, which
+   painted white nav text/icons (from the .nav-on-dark rule below) onto a
+   near-white background -> invisible until .scrolled was added. */
 @media (max-width: 991.98px){
-  #mainNav{
+  #mainNav:not(.nav-on-dark),
+  #mainNav.nav-on-dark.scrolled{
     background: rgba(249,249,249,0.98);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 var(--gray-200);
   }
+  #mainNav.nav-on-dark:not(.scrolled){
+    background: transparent;
+  }
+  /* Once the mobile menu is open, always show a solid, readable backdrop
+     regardless of nav-on-dark state -- an open menu should never be
+     transparent over a hero/page-header image. */
+  #mainNav .navbar-collapse.show,
+  #mainNav .navbar-collapse.collapsing{
+    background: rgba(249,249,249,0.98);
+    backdrop-filter: blur(10px);
+    margin: 0 -16px;
+    padding: 8px 16px 18px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 24px -12px rgba(17,18,23,0.18);
+  }
+  #mainNav.nav-on-dark .navbar-collapse.show .nav-link,
+  #mainNav.nav-on-dark .navbar-collapse.collapsing .nav-link{
+    color: var(--ink);
+  }
+  #mainNav.nav-on-dark .navbar-collapse.show .nav-link::after,
+  #mainNav.nav-on-dark .navbar-collapse.collapsing .nav-link::after{
+    background: var(--magenta);
+  }
 }
 .navbar-brand{ display:flex; align-items:center; gap:8px; }
 .brand-mark{  width:150px; height:auto; }
-/* .brand-mark svg{ width:100%; height:100%; } */
-.brand-word{ font-family: var(--font-display); font-weight:500; font-size:1.05rem; color: var(--ink); }
-.brand-word strong{ font-weight:800; color: var(--magenta); }
 
 .nav-link{
   font-weight:600;
@@ -163,11 +195,11 @@ p{ color: var(--gray-500); margin:0; }
 
 .navbar-toggler{ border:none; padding:6px; }
 .navbar-toggler:focus{ box-shadow:none; }
-.toggler-bar{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+.toggler-bar{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; transition: background .25s var(--ease); }
 
 
 #mainNav.nav-on-dark:not(.scrolled) .nav-link,
-#mainNav.nav-on-dark:not(.scrolled) .brand-word{
+#mainNav.nav-on-dark:not(.scrolled) .dropdown-caret-btn{
   color: var(--white);
 }
 #mainNav.nav-on-dark:not(.scrolled) .nav-link::after{
@@ -216,7 +248,6 @@ p{ color: var(--gray-500); margin:0; }
 }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
-/* Hero panel — transparent now; the gradient lives on .hero so it spans full width */
 .hero-panel{
   position: relative;
   z-index: 1;
@@ -242,6 +273,7 @@ p{ color: var(--gray-500); margin:0; }
   font-size: 1.02rem;
   line-height: 1.65;
   max-width: 460px;
+  text-align: justify;
   margin-bottom: 30px;
 }
 
@@ -389,11 +421,12 @@ p{ color: var(--gray-500); margin:0; }
   border-radius: 10px;
   background: var(--off-white);
   color: var(--magenta);
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
 }
 .service-icon svg{ width:22px; height:22px; }
+.service-card{ text-align: center; }
 .service-card h3{ font-size: 1.1rem; margin-bottom:10px; }
-.service-card p{ font-size: 0.92rem; line-height:1.55; }
+.service-card p{ font-size: 0.92rem; line-height:1.55; text-align: justify; }
 
 /* ---- Services v2 (icon-left card grid) ---- */
 .services{
@@ -415,6 +448,7 @@ p{ color: var(--gray-500); margin:0; }
   line-height: 1.7;
   color: var(--gray-500);
   max-width: 560px;
+  text-align: justify;
 }
 
 .services-grid-v2{
@@ -460,14 +494,23 @@ p{ color: var(--gray-500); margin:0; }
 
 .services-link{ display: inline-flex; }
 
+
 @media (max-width: 767.98px){
-  .services-grid-v2{ grid-template-columns: 1fr; }
-  .service-card-v2{ padding: 26px; gap: 20px; }
-  .service-icon-v2{ width: 72px; height: 72px; }
-  .service-icon-v2 svg{ width: 28px; height: 28px; }
-}
-@media (max-width: 479.98px){
-  .service-card-v2{ flex-direction: column; align-items: flex-start; text-align: left; }
+  .services-grid-v2{ grid-template-columns: 1fr; gap: 20px; }
+  .service-card-v2{
+    padding: 26px;
+    gap: 14px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .service-icon-v2{
+    margin: 10px auto;
+    width: 68px; height: 68px;
+    box-shadow: 0 0 0 10px rgba(217,4,142,0.07), 0 14px 26px -14px rgba(217,4,142,0.35);
+  }
+  .service-icon-v2 svg{ width: 26px; height: 26px; }
+  .service-card-v2-text{ width: 100%; }
+  .service-card-v2-text p{ text-align: justify; }
 }
 
 .services-sub{
@@ -518,7 +561,7 @@ p{ color: var(--gray-500); margin:0; }
   margin-top:2px;
 }
 .benefits-list h4{ color: var(--white); font-size:1.05rem; margin-bottom:6px; }
-.benefits-list p{ color: rgba(255,255,255,0.65); font-size:0.92rem; line-height:1.55; }
+.benefits-list p{ color: rgba(255,255,255,0.65); font-size:0.92rem; line-height:1.55; text-align: justify; }
 
 /* ============================
    Deployments
@@ -567,7 +610,6 @@ footer{
   padding: 70px 0 24px;
   border-top: 1px solid rgba(255,255,255,0.1);
 }
-.footer-brand .brand-word{ color: var(--white); }
 .footer-brand .brand-mark{ color: var(--magenta-bright); }
 .footer-tag{ margin-top:14px; font-size:0.9rem; line-height:1.6; max-width: 320px; }
 footer h5{
@@ -616,7 +658,36 @@ footer ul a:hover{ color: var(--magenta-bright); }
   background: var(--off-white);
   color: var(--magenta);
 }
-.dropdown-toggle::after{ vertical-align: 2px; }
+
+/* FIX: Services nav item used to be a single <a> that was both a link AND a
+   Bootstrap dropdown toggle. On mobile, Bootstrap intercepts the tap to open
+   the submenu, so users could never tap straight through to services.html.
+   Split into a real link (navigates) + a small caret button (opens the
+   submenu) so both actions work independently on any device. */
+.nav-link-split{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav-link-split .nav-link{ margin: 0; padding-right: 2px !important; }
+.dropdown-caret-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 6px;
+  transition: background .2s, color .2s, transform .2s var(--ease);
+}
+.dropdown-caret-btn svg{ width: 15px; height: 15px; transition: transform .2s var(--ease); }
+.dropdown-caret-btn:hover{ background: var(--off-white); }
+.dropdown-caret-btn[aria-expanded="true"] svg{ transform: rotate(180deg); }
+
+.dropdown-toggle::after{ display: none; } /* caret is now the dedicated button's svg */
 
 /* Open on hover/focus (desktop only) — click still works via Bootstrap */
 @media (min-width: 992px){
@@ -648,6 +719,20 @@ footer ul a:hover{ color: var(--magenta-bright); }
     pointer-events: auto;
     transform: translateY(0);
   }
+}
+@media (max-width: 991.98px){
+  /* On mobile the submenu behaves like a normal in-flow accordion panel,
+     opened only by the caret button, closed by tapping it again. */
+  .nav-item.dropdown .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding-left: 12px;
+    margin-top: 4px;
+    display: none;
+  }
+  .nav-item.dropdown .dropdown-menu.show{ display: block; }
 }
 
 /* ============================
@@ -701,6 +786,15 @@ footer ul a:hover{ color: var(--magenta-bright); }
 @media (min-width: 992px){
   .carousel-control-prev{ left: -60px; }
   .carousel-control-next{ right: -60px; }
+}
+/* FIX: on narrow viewports the -8px offset combined with the page-level
+   overflow-x:hidden could clip the arrows against the edge instead of
+   floating just outside the card as intended. Pull them fully inside the
+   card's padding on small screens instead of overhanging the edge. */
+@media (max-width: 575.98px){
+  .carousel-control-prev{ left: 4px; }
+  .carousel-control-next{ right: 4px; }
+  .testimonial-card{ padding: 44px 20px; }
 }
 .carousel-control-prev:hover, .carousel-control-next:hover{ background: var(--magenta); }
 .carousel-arrow{ color: var(--white); font-size: 1.1rem; }
@@ -883,7 +977,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   .whatsapp-tooltip{ display: none; }
 }
 
-/* ============================C:\Users\DELL\OneDrive\Desktop\sandbox\pafel_official\assets\images\
+/* ============================
    Contact page
    ============================ */
 .page-header{
@@ -1047,11 +1141,12 @@ footer ul a:hover{ color: var(--magenta-bright); }
   line-height: 1.65;
   color: var(--ink);
   padding-left: 16px;
+  text-align: justify;
   border-left: 3px solid var(--magenta);
   margin-bottom: 20px;
 }
 .about-lead strong{ color: var(--magenta-deep); }
-.about-copy p{ font-size: 0.96rem; line-height: 1.7; margin-bottom: 16px; }
+.about-copy p{ font-size: 0.96rem; line-height: 1.7; margin-bottom: 16px; text-align: justify; }
 
 /* ============================
    Mission / Vision / Values
@@ -1063,6 +1158,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   border: 1px solid var(--gray-200);
   border-radius: 22px;
   padding: 40px 32px;
+  text-align: justify;
   height: 100%;
   box-shadow: 0 24px 48px -34px rgba(17,18,23,0.16);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease);
@@ -1071,10 +1167,11 @@ footer ul a:hover{ color: var(--magenta-bright); }
   transform: translateY(-8px);
   box-shadow: 0 34px 60px -28px rgba(217,4,142,0.2);
 }
-.mvv-card h3{ font-size: 1.25rem; margin: 22px 0 14px; }
-.mvv-card p{ font-size: 0.94rem; line-height: 1.7; color: var(--gray-500); margin: 0; }
+.mvv-card h3{ font-size: 1.25rem; margin: 22px 0 14px; text-align: center; }
+.mvv-card p{ font-size: 0.94rem; line-height: 1.7; color: var(--gray-500); margin: 0; text-align: justify;}
 
 .mvv-icon{
+  margin: 0 auto;
   width: 60px; height: 60px;
   border-radius: 16px;
   background: var(--pink-soft);
@@ -1085,7 +1182,6 @@ footer ul a:hover{ color: var(--magenta-bright); }
 .mvv-icon svg{ width: 28px; height: 28px; }
 .mvv-card:hover .mvv-icon{ transform: rotate(-6deg) scale(1.08); }
 
-/* Middle card is the "featured" one — lifted, dark, same trick as the SLA table's highlighted column */
 .mvv-card-accent{
   background: linear-gradient(160deg, var(--ink) 0%, var(--magenta-deep) 150%);
   border-color: transparent;
@@ -1140,7 +1236,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
   margin: 6px 0 16px;
 }
-.story-text{ font-size: 0.96rem; line-height: 1.7; color: var(--gray-500); margin-bottom: 16px; }
+.story-text{ font-size: 0.96rem; line-height: 1.7; color: var(--gray-500); margin-bottom: 16px; text-align: justify; }
 .story-signoff{
   margin-top: 22px;
   padding-top: 18px;
@@ -1181,7 +1277,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
 .value-icon svg{ width: 24px; height: 24px; }
 .value-card:hover .value-icon{ transform: scale(1.08) rotate(-6deg); }
 .value-card h4{ font-size: 1rem; margin-bottom: 8px; }
-.value-card p{ font-size: 0.88rem; line-height: 1.55; color: var(--gray-500); margin: 0; }
+.value-card p{ font-size: 0.88rem; line-height: 1.55; color: var(--gray-500); margin: 0; text-align: justify; }
 
 /* -- Stats band (reuses .stat-strip hook for main.js counters) -- */
 .about-stats-band{ background: var(--ink); padding: 64px 0; }
@@ -1233,7 +1329,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   font-weight: 700;
 }
 .cert-badge h4{ font-size: 0.98rem; margin-bottom: 8px; }
-.cert-badge p{ font-size: 0.85rem; line-height: 1.55; color: var(--gray-500); margin: 0; }
+.cert-badge p{ font-size: 0.85rem; line-height: 1.55; color: var(--gray-500); margin: 0; text-align: justify; }
 
 /* ============================
    CTA + Partners (combined)
@@ -1360,6 +1456,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   border-radius: 18px;
   padding: 30px 26px;
   height: 100%;
+  text-align: center;
   box-shadow: 0 24px 48px -34px rgba(17,18,23,0.16);
   transition: transform .3s var(--ease), box-shadow .3s var(--ease);
 }
@@ -1372,12 +1469,12 @@ footer ul a:hover{ color: var(--magenta-bright); }
   color: var(--white);
   font-weight: 800;
   font-family: var(--font-display);
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
   transition: transform .3s var(--ease);
 }
 .process-step:hover .process-num{ transform: rotate(-6deg) scale(1.06); }
 .process-step h3{ font-size: 1.05rem; margin-bottom: 10px; }
-.process-step p{ font-size: 0.88rem; line-height: 1.55; color: var(--gray-500); margin: 0; }
+.process-step p{ font-size: 0.88rem; line-height: 1.55; color: var(--gray-500); margin: 0; text-align: justify; }
 
 /* -- Team -- */
 .team{ padding: 90px 0; background: var(--white); }
@@ -1398,13 +1495,14 @@ footer ul a:hover{ color: var(--magenta-bright); }
 /* -- Safety & Standards -- */
 .safety{ padding: 90px 0; background: var(--ink); }
 .safety h2{ color: var(--white); font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin: 6px 0 14px; }
-.safety-sub{ color: rgba(255,255,255,0.7); font-size: 0.96rem; line-height: 1.7; }
+.safety-sub{ color: rgba(255,255,255,0.7); font-size: 0.96rem; line-height: 1.7; text-align: justify; }
 .safety-item{
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px;
   padding: 26px 22px;
   height: 100%;
+  text-align: center;
   transition: transform .3s var(--ease), background .3s var(--ease);
 }
 .safety-item:hover{ transform: translateY(-6px); background: rgba(255,255,255,0.09); }
@@ -1414,12 +1512,12 @@ footer ul a:hover{ color: var(--magenta-bright); }
   background: rgba(217,4,142,0.22);
   color: var(--magenta-bright);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
   transition: transform .3s var(--ease);
 }
 .safety-item:hover .safety-icon{ transform: rotate(-6deg) scale(1.06); }
 .safety-item h4{ color: var(--white); font-size: 1rem; margin-bottom: 8px; }
-.safety-item p{ color: rgba(255,255,255,0.65); font-size: 0.86rem; line-height: 1.55; margin: 0; }
+.safety-item p{ color: rgba(255,255,255,0.65); font-size: 0.86rem; line-height: 1.55; margin: 0; text-align: justify; }
 
 /* -- Closing CTA -- */
 .cta-band-ink{
@@ -1484,9 +1582,10 @@ footer ul a:hover{ color: var(--magenta-bright); }
     border: 1px solid var(--gray-200);
     margin-bottom: 10px;
   }
-  .grid-project-body .tag.tag-magenta{ background: var(--magenta); color: var(--white); border-color: var(--magenta); }
+  .grid-project-body .tag.tag-magenta{ background: var(--magenta); color: var(--white); border-color: var(--magenta); text-align: center;}
+
   .grid-project-body h3{ font-size: 1.05rem; margin-bottom: 8px; }
-  .grid-project-body p{ font-size: 0.88rem; line-height: 1.5; margin-bottom: 10px; }
+  .grid-project-body p{ font-size: 0.88rem; line-height: 1.5; margin-bottom: 10px; text-align: justify; }
 
   .case-studies{ background: var(--off-white); padding: 90px 0; }
   .case-study{ padding: 50px 0; border-top: 1px solid var(--gray-200); }
@@ -1502,7 +1601,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   .case-block h5{
     font-family: var(--font-display); font-weight:700; font-size: 0.78rem;
     text-transform: uppercase; letter-spacing: 0.05em; color: var(--magenta-deep);
-    margin-bottom: 4px;
+    margin-bottom: 4px; text-align: justify;
   }
   .case-block p{ font-size: 0.92rem; line-height: 1.6; }
   .case-block p strong{ color: var(--ink); }
@@ -1597,6 +1696,20 @@ footer ul a:hover{ color: var(--magenta-bright); }
   font-weight: 700; font-size: 0.85rem; color: var(--ink);
 }
 
+/* FIX: SLA comparison table had no responsive wrapper, so on narrow phones
+   it could overflow or get clipped by the page's overflow-x:hidden.
+   Wrap the <table> in services.html with <div class="table-scroll">...
+   </div> -- this rule gives it its own contained horizontal scroll instead
+   of fighting the page-level overflow rule or squashing columns unreadably. */
+.table-scroll{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-200);
+}
+.table-scroll .sla-table{ min-width: 640px; margin: 0; border: none; }
+
 .sla-table{ width:100%; border-collapse: collapse; font-size: 0.88rem; background: var(--white); }
 .sla-table th{
   background: var(--teal-900); color: var(--white);
@@ -1634,4 +1747,3 @@ footer ul a:hover{ color: var(--magenta-bright); }
   .value-grid{ grid-template-columns: 1fr; }
  
 }
-
