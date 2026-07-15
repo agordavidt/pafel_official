@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
 
-  var WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+  var WEB3FORMS_ACCESS_KEY = '6cee4839-0d35-4a08-a0a4-626b6befc096';
 
   /* ---------- Preloader ---------- */
   var preloader = document.getElementById('preloader');
@@ -147,6 +147,10 @@ window.addEventListener('resize', onScroll);
       renderCalendar();
       renderTimeSlots();
       updateSummary();
+
+      // Clear any leftover success/error message from a previous open.
+      var bkStatusReset = document.getElementById('bkStatus');
+      if (bkStatusReset) { bkStatusReset.textContent = ''; bkStatusReset.className = 'form-status'; }
     }
 
     function renderCalendar() {
@@ -297,7 +301,7 @@ window.addEventListener('resize', onScroll);
 
       var bkStatus = document.getElementById('bkStatus');
 
-      // ---- Email via Web3Forms (sends to pafelsolutions@gmail.com, attachment included on Pro) ----
+      // ---- Email via Web3Forms (sends to admin@pafelsolutions.com) ----
       var formData = new FormData(bookingForm);
       formData.set('access_key', WEB3FORMS_ACCESS_KEY);
       formData.set('subject', 'New Site Assessment Booking — ' + name);
@@ -310,17 +314,6 @@ window.addEventListener('resize', onScroll);
       formData.set('preferred_date', dateLabel);
       formData.set('preferred_time', selectedTime);
 
-      // ---- WhatsApp deep link (instant notification, kept alongside email) ----
-      var whatsappNumber = '2340000000000';
-      var waMessage = 'PAFEL SOLUTIONS: New Site Assessment Request%0A' +
-        'Date: ' + encodeURIComponent(dateLabel) + ' at ' + encodeURIComponent(selectedTime) + '%0A' +
-        'Name: ' + encodeURIComponent(name) + '%0A' +
-        'Phone: ' + encodeURIComponent(phone) + '%0A' +
-        'Project type: ' + encodeURIComponent(project) + '%0A' +
-        'Preferred system: ' + encodeURIComponent(system) + '%0A' +
-        'Scope: ' + encodeURIComponent(scope);
-      var waLink = 'https://wa.me/' + whatsappNumber + '?text=' + waMessage;
-
       bkSubmit.disabled = true;
       bkSubmit.textContent = 'Sending…';
       if (bkStatus) { bkStatus.textContent = ''; bkStatus.className = 'form-status'; }
@@ -328,24 +321,35 @@ window.addEventListener('resize', onScroll);
       fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
         .then(function (response) { return response.json(); })
         .then(function (result) {
+          if (!result.success) { throw new Error(result.message || 'Web3Forms rejected the submission'); }
+
           if (bkStatus) {
-            bkStatus.textContent = result.success
-              ? 'Booking sent — we\'ll confirm shortly.'
-              : 'Could not send automatically — please confirm via WhatsApp.';
-            bkStatus.classList.add(result.success ? 'is-success' : 'is-error');
+            bkStatus.textContent = 'Booking request sent — we\'ll confirm by email within one business day.';
+            bkStatus.classList.add('is-success');
           }
+          bookingForm.reset();
+          bkSubmit.disabled = false;
+          bkSubmit.textContent = 'Confirm Appointment';
+
+          // Give the visitor time to actually read the success message
+          // before the modal closes itself.
+          setTimeout(function () {
+            var instance = bootstrap.Modal.getOrCreateInstance(modalEl);
+            instance.hide();
+          }, 2400);
         })
         .catch(function () {
           if (bkStatus) {
-            bkStatus.textContent = 'Could not send automatically — please confirm via WhatsApp.';
+            var mailBody = 'Name: ' + name + '\nPhone: ' + phone +
+              '\nProject type: ' + project + '\nPreferred system: ' + system +
+              '\nScope: ' + scope + '\nPreferred date/time: ' + dateLabel + ' at ' + selectedTime;
+            var mailLink = 'mailto:admin@pafelsolutions.com?subject=' +
+              encodeURIComponent('Site Assessment Booking — ' + name) +
+              '&body=' + encodeURIComponent(mailBody);
+            bkStatus.innerHTML = 'Could not send automatically. <a href="' + mailLink + '">Click here to email us directly</a> instead.';
             bkStatus.classList.add('is-error');
           }
-        })
-        .finally(function () {
-          window.open(waLink, '_blank');
-          var instance = bootstrap.Modal.getOrCreateInstance(modalEl);
-          setTimeout(function () { instance.hide(); }, 900);
-          bookingForm.reset();
+          // Left form data intact and modal open so the visitor doesn't lose their input.
           bkSubmit.disabled = false;
           bkSubmit.textContent = 'Confirm Appointment';
         });
@@ -494,24 +498,23 @@ window.addEventListener('resize', onScroll);
       fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
         .then(function (response) { return response.json(); })
         .then(function (result) {
-          if (result.success) {
-            if (cStatus) {
-              cStatus.textContent = 'Message sent — we\'ll reply by email soon.';
-              cStatus.classList.add('is-success');
-            }
-            contactForm.reset();
-          } else {
-            throw new Error('Web3Forms rejected the submission');
+          if (!result.success) { throw new Error(result.message || 'Web3Forms rejected the submission'); }
+
+          if (cStatus) {
+            cStatus.textContent = 'Message sent — we\'ll reply by email soon.';
+            cStatus.classList.add('is-success');
           }
+          contactForm.reset();
         })
         .catch(function () {
-          // Fallback so the message is never lost if the API call fails
-          var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
-          var mailLink = 'mailto:pafelsolutions@gmail.com?subject=' +
-            encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-          window.location.href = mailLink;
+          // Fallback so the message is never lost if the API call fails.
+          // Non-forcing link (rather than auto-redirecting) so the visitor
+          // keeps their filled-in form and chooses when to switch apps.
           if (cStatus) {
-            cStatus.textContent = 'Opening your email app instead — please hit send there.';
+            var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
+            var mailLink = 'mailto:admin@pafelsolutions.com?subject=' +
+              encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            cStatus.innerHTML = 'Could not send automatically. <a href="' + mailLink + '">Click here to email us directly</a> instead.';
             cStatus.classList.add('is-error');
           }
         })

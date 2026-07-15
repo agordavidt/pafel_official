@@ -1094,6 +1094,30 @@ footer ul a:hover{ color: var(--magenta-bright); }
 .nav-link.active{ color: var(--magenta-deep); }
 .nav-link.active::after{ transform: scaleX(1); }
 
+.form-status{
+  display: none;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+}
+.form-status:not(:empty){ display: block; }
+.form-status a{ text-decoration: underline; }
+.form-status.is-success{
+  background: var(--pink-soft);
+  color: var(--magenta-deep);
+  border: 1px solid rgba(217,4,142,0.25);
+}
+.form-status.is-error{
+  background: #FDEAEA;
+  color: #B3261E;
+  border: 1px solid rgba(179,38,30,0.25);
+}
+.form-status.is-error a{ color: #B3261E; }
+
 @media (max-width: 991.98px){
   .page-header{ padding: 130px 0 50px; }
   .map-frame{ min-height: 280px; }
