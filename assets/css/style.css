@@ -580,7 +580,11 @@ p{ color: var(--gray-500); margin:0; }
   transition: transform .7s var(--ease);
 }
 .project-card:hover img{ transform: scale(1.08); }
-.project-card-lg{ aspect-ratio: 4/3.1; }
+.project-card-lg {
+  width: 95%;
+  height: 100%;
+  aspect-ratio: 4/3.1; /* This remains the "anchor" height for the whole row */
+}
 .deployment-stack{ display:flex; flex-direction:column; gap:24px; height:100%; }
 .project-card-sm{ aspect-ratio: 16/9.3; flex:1; }
 
@@ -719,6 +723,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
     pointer-events: auto;
     transform: translateY(0);
   }
+
 }
 @media (max-width: 991.98px){
   /* On mobile the submenu behaves like a normal in-flow accordion panel,
@@ -1603,7 +1608,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
     text-transform: uppercase; letter-spacing: 0.05em; color: var(--magenta-deep);
     margin-bottom: 4px; text-align: justify;
   }
-  .case-block p{ font-size: 0.92rem; line-height: 1.6; }
+  .case-block p{ font-size: 0.92rem; line-height: 1.6; text-align: justify;}
   .case-block p strong{ color: var(--ink); }
 
   /* ============================
@@ -1670,7 +1675,7 @@ footer ul a:hover{ color: var(--magenta-bright); }
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--magenta-deep); margin-bottom: 10px;
 }
-.svc-lead{ font-size: 1.02rem; line-height: 1.65; color: var(--gray-500); margin-bottom: 16px; }
+.svc-lead{ font-size: 1.02rem; line-height: 1.65; color: var(--gray-500); margin-bottom: 16px; text-align: justify;}
 .svc-note{ font-size: 0.9rem; line-height: 1.6; color: var(--gray-500); margin-bottom: 28px; }
 
 .workflow{ display:flex; flex-direction:column; gap: 20px; margin-bottom: 30px; }
