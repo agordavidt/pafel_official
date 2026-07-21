@@ -438,11 +438,12 @@
               <div class="row g-3">
                 <div class="col-sm-6">
                   <label class="form-label" for="bkName">Full name *</label>
-                  <input type="text" class="form-control" id="bkName" required placeholder="John Doe">
+                  <input type="text" class="form-control" id="bkName" required>
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="bkPhone">Phone number *</label>
-                  <input type="tel" class="form-control" id="bkPhone" required placeholder="+234...">
+                  <input type="tel" class="form-control" id="bkPhone" required
+                        inputmode="numeric" maxlength="11" pattern="0[0-9]{10}">
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="bkProject">Project type</label>
@@ -464,7 +465,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="bkScope">Scope / description</label>
-                  <textarea class="form-control" id="bkScope" rows="3" placeholder="Briefly describe your cooling needs..."></textarea>
+                  <textarea class="form-control" id="bkScope" rows="3"></textarea>
                 </div>
               </div>
 

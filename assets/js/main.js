@@ -3,6 +3,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var WEB3FORMS_ACCESS_KEY = '6cee4839-0d35-4a08-a0a4-626b6befc096';
 
+  /* ---------- Form validation helpers (assessment + contact forms) ---------- */
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  }
+
+  function isValidPhone(value) {
+    // 11 digits total, must start with 0 (e.g. 08012345678)
+    return /^0\d{10}$/.test(value.trim());
+  }
+
+  function setFieldError(field, message) {
+    field.classList.add('is-invalid');
+    field.classList.remove('is-valid');
+
+    var feedback = field.parentElement.querySelector('.invalid-feedback');
+    if (!feedback) {
+      feedback = document.createElement('div');
+      feedback.className = 'invalid-feedback';
+      field.parentElement.appendChild(feedback);
+    }
+    feedback.textContent = message;
+  }
+
+  function clearFieldError(field) {
+    field.classList.remove('is-invalid');
+    field.classList.add('is-valid');
+  }
+
+  function validateField(field) {
+    var isRequired = field.hasAttribute('required');
+    var value = field.value.trim();
+
+    if (isRequired && !value) {
+      setFieldError(field, 'This field is required.');
+      return false;
+    }
+
+    if (field.type === 'email' && value && !isValidEmail(value)) {
+      setFieldError(field, 'Enter a valid email address (e.g. name@example.com).');
+      return false;
+    }
+
+    if (field.type === 'tel' && value && !isValidPhone(value)) {
+      setFieldError(field, 'Enter a valid 11-digit phone number starting with 0 (e.g. 08012345678).');
+      return false;
+    }
+
+    clearFieldError(field);
+    return true;
+  }
+
+  function validateForm(form) {
+    var isValid = true;
+    form.querySelectorAll('input, textarea, select').forEach(function (field) {
+      if (field.hasAttribute('required') || field.type === 'email' || field.type === 'tel') {
+        if (!validateField(field)) isValid = false;
+      }
+    });
+    return isValid;
+  }
+
+  function attachLiveValidation(form) {
+    form.querySelectorAll('input, textarea, select').forEach(function (field) {
+      field.addEventListener('blur', function () { validateField(field); });
+      field.addEventListener('input', function () {
+        if (field.classList.contains('is-invalid')) validateField(field);
+      });
+    });
+
+    // Digits-only, max 11 chars while typing in the phone field
+    var phoneField = form.querySelector('input[type="tel"]');
+    if (phoneField) {
+      phoneField.addEventListener('input', function () {
+        phoneField.value = phoneField.value.replace(/\D/g, '').slice(0, 11);
+      });
+    }
+  }
+
   /* ---------- Preloader ---------- */
   var preloader = document.getElementById('preloader');
   window.addEventListener('load', function () {
@@ -126,6 +204,8 @@ window.addEventListener('resize', onScroll);
     var selectedSummary = document.getElementById('selectedSummary');
     var bookingForm = document.getElementById('assessmentForm');
     var bkSubmit = document.getElementById('bkSubmit');
+
+    attachLiveValidation(bookingForm);
 
     var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     var weekdayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -281,8 +361,12 @@ window.addEventListener('resize', onScroll);
     bookingForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      if (!bookingForm.checkValidity()) {
-        bookingForm.reportValidity();
+      var formIsValid = validateForm(bookingForm);
+      bookingForm.classList.add('was-validated');
+
+      if (!formIsValid) {
+        var firstInvalid = bookingForm.querySelector('.is-invalid');
+        if (firstInvalid) firstInvalid.focus();
         return;
       }
       if (!selectedDate || !selectedTime) {
@@ -328,6 +412,10 @@ window.addEventListener('resize', onScroll);
             bkStatus.classList.add('is-success');
           }
           bookingForm.reset();
+          bookingForm.classList.remove('was-validated');
+          bookingForm.querySelectorAll('.is-valid, .is-invalid').forEach(function (field) {
+            field.classList.remove('is-valid', 'is-invalid');
+          });
           bkSubmit.disabled = false;
           bkSubmit.textContent = 'Confirm Appointment';
 
@@ -457,6 +545,8 @@ window.addEventListener('resize', onScroll);
   /* ---------- Contact page: general enquiry form ---------- */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    attachLiveValidation(contactForm);
+
     var serviceLabels = {
       'hvac-design': 'HVAC Design enquiry',
       'installation': 'Installation enquiry',
@@ -471,10 +561,16 @@ window.addEventListener('resize', onScroll);
 
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!contactForm.checkValidity()) {
-        contactForm.reportValidity();
+
+      var formIsValid = validateForm(contactForm);
+      contactForm.classList.add('was-validated');
+
+      if (!formIsValid) {
+        var firstInvalid = contactForm.querySelector('.is-invalid');
+        if (firstInvalid) firstInvalid.focus();
         return;
       }
+
       var name = document.getElementById('cName').value.trim();
       var email = document.getElementById('cEmail').value.trim();
       var subject = document.getElementById('cSubject').value.trim() || 'Website enquiry';
@@ -505,6 +601,10 @@ window.addEventListener('resize', onScroll);
             cStatus.classList.add('is-success');
           }
           contactForm.reset();
+          contactForm.classList.remove('was-validated');
+          contactForm.querySelectorAll('.is-valid, .is-invalid').forEach(function (field) {
+            field.classList.remove('is-valid', 'is-invalid');
+          });
         })
         .catch(function () {
           // Fallback so the message is never lost if the API call fails.
