@@ -2,18 +2,28 @@
 .page-header{ padding-bottom: 50px; }
 .gallery{ background: var(--white); padding: 50px 0 90px; min-height: 60vh; }
 
-/* Masonry keeps each photo's real proportions */
-.masonry{ column-count: 3; column-gap: 14px; }
+/* Uniform grid: every tile is the same size; photos are cropped to fit.
+   The full, uncropped photo shows when it is opened. */
+.masonry{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
 .masonry-item{
-  break-inside: avoid; margin: 0 0 14px;
+  margin: 0;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg); overflow: hidden; background: var(--ink);
 }
-.masonry-item img{ width:100%; height:auto; display:block; transition: transform .6s var(--ease); }
+.masonry-item img{
+  width:100%; height:100%; object-fit: cover; display:block;
+  transition: transform .6s var(--ease);
+}
 .masonry-item:has(.js-gallery-img){ cursor: zoom-in; }
-.masonry-item:has(.js-gallery-img):hover img{ transform: scale(1.04); }
-.masonry-item video{ width:100%; display:block; background:#000; }
-@media (max-width: 991.98px){ .masonry{ column-count: 2; } }
-@media (max-width: 519.98px){ .masonry{ column-count: 1; } }
+.masonry-item:has(.js-gallery-img):hover img{ transform: scale(1.05); }
+.masonry-item video{ width:100%; height:100%; object-fit: cover; display:block; background:#000; }
+@media (max-width: 767.98px){
+  .masonry{ grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
 
 /* Lightbox (works with the gallery code already in main.js) */
 .lightbox{

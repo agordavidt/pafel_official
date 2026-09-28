@@ -33,6 +33,7 @@ Every page shares a persistent navbar, footer, floating WhatsApp button, and a *
 ├── about.html
 ├── services.html
 ├── projects.html
+----galler.html
 ├── contact.html
 ├── assets/
 │   ├── css/
