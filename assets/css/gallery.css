@@ -1,0 +1,58 @@
+/* Gallery page. Loads AFTER style.css and reuses its tokens and .page-header. */
+.page-header{ padding-bottom: 50px; }
+.gallery{ background: var(--white); padding: 50px 0 90px; min-height: 60vh; }
+
+/* Masonry keeps each photo's real proportions */
+.masonry{ column-count: 3; column-gap: 14px; }
+.masonry-item{
+  break-inside: avoid; margin: 0 0 14px;
+  border-radius: var(--radius-lg); overflow: hidden; background: var(--ink);
+}
+.masonry-item img{ width:100%; height:auto; display:block; transition: transform .6s var(--ease); }
+.masonry-item:has(.js-gallery-img){ cursor: zoom-in; }
+.masonry-item:has(.js-gallery-img):hover img{ transform: scale(1.04); }
+.masonry-item video{ width:100%; display:block; background:#000; }
+@media (max-width: 991.98px){ .masonry{ column-count: 2; } }
+@media (max-width: 519.98px){ .masonry{ column-count: 1; } }
+
+/* Lightbox (works with the gallery code already in main.js) */
+.lightbox{
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(10,10,12,.95);
+  display:none; align-items:center; justify-content:center;
+  flex-direction: column; padding: 56px 16px 16px;
+}
+.lightbox.is-open{ display:flex; }
+.lightbox-img{ max-width:100%; max-height: calc(100vh - 230px); object-fit: contain; border-radius: 6px; transition: opacity .15s; }
+.lightbox-img.is-fading{ opacity:0; }
+.lightbox-caption{ color: var(--white); font-weight:600; margin-top:14px; text-align:center; font-size:.95rem; max-width: 720px; line-height:1.45; }
+.lightbox-counter{ color: rgba(255,255,255,.55); font-size:.8rem; margin-top:4px; }
+
+/* Thumbnail strip: the rest of the set */
+.lightbox-thumbs{
+  display:none; gap:8px; margin-top:14px; max-width:100%;
+  overflow-x:auto; padding: 4px; scrollbar-width: thin;
+}
+.lightbox-thumbs img{
+  flex-shrink:0; width:64px; height:48px; object-fit:cover;
+  border-radius:6px; opacity:.5; cursor:pointer;
+  border:2px solid transparent; transition: opacity .2s, border-color .2s;
+}
+.lightbox-thumbs img:hover{ opacity:.85; }
+.lightbox-thumbs img.is-active{ opacity:1; border-color: var(--magenta); }
+
+.lightbox-btn{
+  position:absolute; width:46px; height:46px; border-radius:50%;
+  border:none; background: rgba(255,255,255,.12); color: var(--white);
+  font-size:1.2rem; display:flex; align-items:center; justify-content:center;
+  transition: background .2s;
+}
+.lightbox-btn:hover{ background: var(--magenta); }
+.lightbox-close{ top:14px; right:14px; }
+.lightbox-prev{ left:14px; top:50%; transform: translateY(-50%); }
+.lightbox-next{ right:14px; top:50%; transform: translateY(-50%); }
+@media (max-width: 575.98px){
+  .lightbox{ padding-bottom: 70px; }
+  .lightbox-img{ max-height: calc(100vh - 260px); }
+  .lightbox-prev, .lightbox-next{ top:auto; bottom:14px; transform:none; }
+}
